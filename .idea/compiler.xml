@@ -12,7 +12,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="Gesmotor" target="1.5" />
-      <module name="v12-engine" target="1.5" />
+      <module name="v12-engine" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
