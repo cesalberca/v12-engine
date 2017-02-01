@@ -4,9 +4,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>v12-engine</groupId>
-    <artifactId>V12 Engine</artifactId>
+    <groupId>com.visionarios</groupId>
+    <artifactId>v12-engine</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <name>V12 Engine</name>
+    <packaging>jar</packaging>
 
     <build>
         <plugins>
