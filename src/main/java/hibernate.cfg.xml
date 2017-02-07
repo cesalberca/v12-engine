@@ -6,13 +6,12 @@
     <session-factory>
         <property name="connection.url">jdbc:mysql://146.185.160.131:3306/v12_engine</property>
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="connection.username">Visionario</property>
+        <property name="connection.password">SantoySeña</property>
         <mapping class="modelo.entidades.Eficiencia"/>
         <mapping class="modelo.entidades.Marca"/>
         <mapping class="modelo.entidades.Modelo"/>
-        <!-- <property name="connection.username"/> -->
-        <!-- <property name="connection.password"/> -->
 
-        <!-- DB schema will be updated if needed -->
         <!-- <property name="hbm2ddl.auto">update</property> -->
     </session-factory>
 </hibernate-configuration>
