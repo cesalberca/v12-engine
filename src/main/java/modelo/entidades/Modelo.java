@@ -4,34 +4,12 @@ import javax.persistence.*;
 
 @Entity
 public class Modelo {
-    private int idModelo;
-    private int idMarca;
     private String nombre;
     private int consumo;
     private int emisiones;
-    private int idEficiencia;
+    private int id;
     private Marca marcaByIdMarca;
     private Eficiencia eficienciaByIdEficiencia;
-
-    @Id
-    @Column(name = "id_modelo")
-    public int getIdModelo() {
-        return idModelo;
-    }
-
-    public void setIdModelo(int idModelo) {
-        this.idModelo = idModelo;
-    }
-
-    @Basic
-    @Column(name = "id_marca")
-    public int getIdMarca() {
-        return idMarca;
-    }
-
-    public void setIdMarca(int idMarca) {
-        this.idMarca = idMarca;
-    }
 
     @Basic
     @Column(name = "nombre")
@@ -63,14 +41,14 @@ public class Modelo {
         this.emisiones = emisiones;
     }
 
-    @Basic
-    @Column(name = "id_eficiencia")
-    public int getIdEficiencia() {
-        return idEficiencia;
+    @Id
+    @Column(name = "id")
+    public int getId() {
+        return id;
     }
 
-    public void setIdEficiencia(int idEficiencia) {
-        this.idEficiencia = idEficiencia;
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Override
@@ -80,29 +58,28 @@ public class Modelo {
 
         Modelo modelo = (Modelo) o;
 
-        if (idModelo != modelo.idModelo) return false;
-        if (idMarca != modelo.idMarca) return false;
         if (consumo != modelo.consumo) return false;
         if (emisiones != modelo.emisiones) return false;
-        if (idEficiencia != modelo.idEficiencia) return false;
+        if (id != modelo.id) return false;
         if (nombre != null ? !nombre.equals(modelo.nombre) : modelo.nombre != null) return false;
-
-        return true;
+        if (marcaByIdMarca != null ? !marcaByIdMarca.equals(modelo.marcaByIdMarca) : modelo.marcaByIdMarca != null)
+            return false;
+        return eficienciaByIdEficiencia != null ? eficienciaByIdEficiencia.equals(modelo.eficienciaByIdEficiencia) : modelo.eficienciaByIdEficiencia == null;
     }
 
     @Override
     public int hashCode() {
-        int result = idModelo;
-        result = 31 * result + idMarca;
-        result = 31 * result + (nombre != null ? nombre.hashCode() : 0);
+        int result = nombre != null ? nombre.hashCode() : 0;
         result = 31 * result + consumo;
         result = 31 * result + emisiones;
-        result = 31 * result + idEficiencia;
+        result = 31 * result + id;
+        result = 31 * result + (marcaByIdMarca != null ? marcaByIdMarca.hashCode() : 0);
+        result = 31 * result + (eficienciaByIdEficiencia != null ? eficienciaByIdEficiencia.hashCode() : 0);
         return result;
     }
 
     @ManyToOne
-    @JoinColumn(name = "id_marca", referencedColumnName = "id_marca", nullable = false)
+    @JoinColumn(name = "id_marca", referencedColumnName = "id", nullable = false)
     public Marca getMarcaByIdMarca() {
         return marcaByIdMarca;
     }
@@ -112,7 +89,7 @@ public class Modelo {
     }
 
     @ManyToOne
-    @JoinColumn(name = "id_eficiencia", referencedColumnName = "id_eficiencia", nullable = false)
+    @JoinColumn(name = "id_eficiencia", referencedColumnName = "id", nullable = false)
     public Eficiencia getEficienciaByIdEficiencia() {
         return eficienciaByIdEficiencia;
     }

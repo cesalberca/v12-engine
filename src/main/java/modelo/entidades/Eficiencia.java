@@ -6,20 +6,10 @@ import java.util.Collection;
 
 @Entity
 public class Eficiencia {
-    private int idEficiencia;
     private String nombre;
     private byte[] imagen;
-    private Collection<Modelo> modelosByIdEficiencia;
-
-    @Id
-    @Column(name = "id_eficiencia")
-    public int getIdEficiencia() {
-        return idEficiencia;
-    }
-
-    public void setIdEficiencia(int idEficiencia) {
-        this.idEficiencia = idEficiencia;
-    }
+    private int id;
+    private Collection<Modelo> modelosById;
 
     @Basic
     @Column(name = "nombre")
@@ -41,6 +31,16 @@ public class Eficiencia {
         this.imagen = imagen;
     }
 
+    @Id
+    @Column(name = "id")
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -48,7 +48,7 @@ public class Eficiencia {
 
         Eficiencia that = (Eficiencia) o;
 
-        if (idEficiencia != that.idEficiencia) return false;
+        if (id != that.id) return false;
         if (nombre != null ? !nombre.equals(that.nombre) : that.nombre != null) return false;
         if (!Arrays.equals(imagen, that.imagen)) return false;
 
@@ -57,18 +57,18 @@ public class Eficiencia {
 
     @Override
     public int hashCode() {
-        int result = idEficiencia;
-        result = 31 * result + (nombre != null ? nombre.hashCode() : 0);
+        int result = nombre != null ? nombre.hashCode() : 0;
         result = 31 * result + Arrays.hashCode(imagen);
+        result = 31 * result + id;
         return result;
     }
 
     @OneToMany(mappedBy = "eficienciaByIdEficiencia")
-    public Collection<Modelo> getModelosByIdEficiencia() {
-        return modelosByIdEficiencia;
+    public Collection<Modelo> getModelosById() {
+        return modelosById;
     }
 
-    public void setModelosByIdEficiencia(Collection<Modelo> modelosByIdEficiencia) {
-        this.modelosByIdEficiencia = modelosByIdEficiencia;
+    public void setModelosById(Collection<Modelo> modelosById) {
+        this.modelosById = modelosById;
     }
 }

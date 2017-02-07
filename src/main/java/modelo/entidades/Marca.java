@@ -5,19 +5,9 @@ import java.util.Collection;
 
 @Entity
 public class Marca {
-    private int idMarca;
     private String nombre;
-    private Collection<Modelo> modelosByIdMarca;
-
-    @Id
-    @Column(name = "id_marca")
-    public int getIdMarca() {
-        return idMarca;
-    }
-
-    public void setIdMarca(int idMarca) {
-        this.idMarca = idMarca;
-    }
+    private int id;
+    private Collection<Modelo> modelosById;
 
     @Basic
     @Column(name = "nombre")
@@ -29,6 +19,16 @@ public class Marca {
         this.nombre = nombre;
     }
 
+    @Id
+    @Column(name = "id")
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -36,7 +36,7 @@ public class Marca {
 
         Marca marca = (Marca) o;
 
-        if (idMarca != marca.idMarca) return false;
+        if (id != marca.id) return false;
         if (nombre != null ? !nombre.equals(marca.nombre) : marca.nombre != null) return false;
 
         return true;
@@ -44,17 +44,17 @@ public class Marca {
 
     @Override
     public int hashCode() {
-        int result = idMarca;
-        result = 31 * result + (nombre != null ? nombre.hashCode() : 0);
+        int result = nombre != null ? nombre.hashCode() : 0;
+        result = 31 * result + id;
         return result;
     }
 
     @OneToMany(mappedBy = "marcaByIdMarca")
-    public Collection<Modelo> getModelosByIdMarca() {
-        return modelosByIdMarca;
+    public Collection<Modelo> getModelosById() {
+        return modelosById;
     }
 
-    public void setModelosByIdMarca(Collection<Modelo> modelosByIdMarca) {
-        this.modelosByIdMarca = modelosByIdMarca;
+    public void setModelosById(Collection<Modelo> modelosById) {
+        this.modelosById = modelosById;
     }
 }
