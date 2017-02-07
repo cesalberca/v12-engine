@@ -4,9 +4,6 @@ import javax.persistence.*;
 import java.util.Arrays;
 import java.util.Collection;
 
-/**
- * Created by juanxxiiiTarde on 07/02/2017.
- */
 @Entity
 public class Eficiencia {
     private int idEficiencia;

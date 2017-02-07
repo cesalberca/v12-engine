@@ -3,9 +3,6 @@ package modelo.entidades;
 import javax.persistence.*;
 import java.util.Collection;
 
-/**
- * Created by juanxxiiiTarde on 07/02/2017.
- */
 @Entity
 public class Marca {
     private int idMarca;

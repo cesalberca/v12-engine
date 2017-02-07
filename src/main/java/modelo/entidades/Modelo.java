@@ -2,9 +2,6 @@ package modelo.entidades;
 
 import javax.persistence.*;
 
-/**
- * Created by juanxxiiiTarde on 07/02/2017.
- */
 @Entity
 public class Modelo {
     private int idModelo;
