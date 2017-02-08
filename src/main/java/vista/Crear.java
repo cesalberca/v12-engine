@@ -1,27 +1,34 @@
 package vista;
 
+import utils.HintTextFieldUI;
+
 import javax.swing.*;
 import java.awt.event.*;
 
-public class CrearMarca extends JDialog {
+public class Crear extends JDialog {
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonCancel;
     private JRadioButton rbtnMarca;
-    private JRadioButton eficienciaRadioButton;
     private JRadioButton modeloRadioButton;
     private JComboBox cbMarcas;
-    private JComboBox cbModelos;
+    private JComboBox cbEficiencias;
     private JTextField tfNombre;
     private JTextField tfEmisiones;
     private JTextField tfConsumo;
 
-    public CrearMarca() {
+    public Crear() {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
-        this.setTitle("INTRODUZCA EL NOMBRE DE LA MARCA");
-
+        tfNombre.setUI(new HintTextFieldUI("Nombre", true));
+        tfConsumo.setUI(new HintTextFieldUI("Consumo", true));
+        tfEmisiones.setUI(new HintTextFieldUI("Emisiones", true));
+        tfNombre.setEnabled(false);
+        tfEmisiones.setEnabled(false);
+        tfConsumo.setEnabled(false);
+        cbMarcas.setEnabled(false);
+        cbEficiencias.setEnabled(false);
         buttonOK.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 onOK();
@@ -48,6 +55,19 @@ public class CrearMarca extends JDialog {
                 onCancel();
             }
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+        rbtnMarca.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                onMarcaSeleccionado();
+            }
+        });
+        modeloRadioButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                onModeloSeleccionado();
+            }
+        });
+
     }
 
     private void onOK() {
@@ -58,6 +78,22 @@ public class CrearMarca extends JDialog {
     private void onCancel() {
         // add your code here if necessary
         dispose();
+    }
+
+    private void onMarcaSeleccionado(){
+        tfNombre.setEnabled(true);
+        tfEmisiones.setEnabled(false);
+        tfConsumo.setEnabled(false);
+        cbMarcas.setEnabled(false);
+        cbEficiencias.setEnabled(false);
+    }
+
+    private void onModeloSeleccionado(){
+        tfNombre.setEnabled(true);
+        tfEmisiones.setEnabled(true);
+        tfConsumo.setEnabled(true);
+        cbMarcas.setEnabled(true);
+        cbEficiencias.setEnabled(true);
     }
 
 }

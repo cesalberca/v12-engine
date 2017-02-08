@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="vista.CrearMarca">
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="vista.Crear">
   <grid id="cbd77" binding="contentPane" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="10" left="10" bottom="10" right="10"/>
     <constraints>
@@ -60,14 +60,6 @@
               <text value="Marca"/>
             </properties>
           </component>
-          <component id="b351c" class="javax.swing.JRadioButton" binding="eficienciaRadioButton" default-binding="true">
-            <constraints>
-              <grid row="2" column="0" row-span="3" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value="Eficiencia"/>
-            </properties>
-          </component>
           <component id="9e140" class="javax.swing.JRadioButton" binding="modeloRadioButton" default-binding="true">
             <constraints>
               <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
@@ -82,7 +74,7 @@
             </constraints>
             <properties/>
           </component>
-          <component id="9020d" class="javax.swing.JComboBox" binding="cbModelos">
+          <component id="9020d" class="javax.swing.JComboBox" binding="cbEficiencias">
             <constraints>
               <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -116,4 +108,11 @@
       </grid>
     </children>
   </grid>
+  <buttonGroups>
+    <group name="selector">
+      <member id="3bdd2"/>
+      <member id="9e140"/>
+      <member id="b351c"/>
+    </group>
+  </buttonGroups>
 </form>

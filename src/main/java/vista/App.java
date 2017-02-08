@@ -37,9 +37,9 @@ public class App {
         crearButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                CrearMarca marca = new CrearMarca();
+                Crear marca = new Crear();
                 marca.setLocationRelativeTo(null);
-                marca.setTitle("Crear nueva marca");
+                marca.setTitle("Crear nuevo elemento");
                 marca.pack();
                 marca.setVisible(true);
             }
