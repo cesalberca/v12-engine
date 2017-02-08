@@ -1,7 +1,6 @@
 package modelo.entidades;
 
 import lombok.Data;
-import lombok.NonNull;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -16,16 +15,12 @@ public class Eficiencia implements Serializable {
     @GeneratedValue
     private int id;
 
-    @NonNull
     @Column(name = "nombre")
-    private String nombre;
+    private final String nombre;
 
     @Column(name = "imagen")
     private byte[] imagen;
 
     @OneToMany(mappedBy = "eficiencia")
     private Collection<Modelo> modelos;
-
-    public Eficiencia() {
-    }
 }

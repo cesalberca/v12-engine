@@ -10,7 +10,7 @@ public class GestorModelos {
 
     public GestorModelos() {
         this.session.beginTransaction();
-        Marca marca = new Marca();
+        Marca marca = new Marca("hola");
         this.session.save(marca);
         System.out.println(marca);
         this.session.getTransaction().commit();

@@ -16,15 +16,12 @@ public class Modelo implements Serializable {
     @Column(name = "id")
     private int id;
 
-    @NonNull
     @Column(name = "nombre")
-    private String nombre;
+    private final String nombre;
 
-    @NonNull
     @Column(name = "consumo")
     private int consumo;
 
-    @NonNull
     @Column(name = "emisiones")
     private int emisiones;
 
@@ -35,7 +32,4 @@ public class Modelo implements Serializable {
     @ManyToOne
     @JoinColumn(name = "id_eficiencia", referencedColumnName = "id", nullable = false)
     private Eficiencia eficiencia;
-
-    public Modelo() {
-    }
 }

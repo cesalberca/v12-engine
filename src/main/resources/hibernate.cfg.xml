@@ -9,7 +9,6 @@
         <property name="connection.username">Visionario</property>
         <property name="connection.password">SantoySeña</property>
         <property name="show_sql">true</property>
-        <property name="hbm2ddl.auto">update</property>
         <mapping class="modelo.entidades.Eficiencia"/>
         <mapping class="modelo.entidades.Marca"/>
         <mapping class="modelo.entidades.Modelo"/>

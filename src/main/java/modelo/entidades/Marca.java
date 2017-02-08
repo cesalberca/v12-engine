@@ -1,7 +1,7 @@
 package modelo.entidades;
 
 import lombok.Data;
-import lombok.NonNull;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -16,13 +16,9 @@ public class Marca implements Serializable {
     @Column(name = "id")
     private int id;
 
-    @NonNull
     @Column(name = "nombre")
-    private String nombre;
+    private final String nombre;
 
     @OneToMany(mappedBy = "marca")
     private Collection<Modelo> modelos;
-
-    public Marca() {
-    }
 }
