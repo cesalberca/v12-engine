@@ -82,6 +82,10 @@
               </component>
             </children>
           </toolbar>
+          <component id="444ca" class="javax.swing.JPasswordField" binding="passwordField1" default-binding="true">
+            <constraints border-constraint="West"/>
+            <properties/>
+          </component>
         </children>
       </grid>
     </children>

@@ -16,6 +16,7 @@ public class App {
     private JButton marcasButton;
     private JButton filtrarButton;
     private JButton button2;
+    private JPasswordField passwordField1;
 
 
     public App() {
@@ -42,6 +43,17 @@ public class App {
                 marca.setTitle("Crear nuevo elemento");
                 marca.pack();
                 marca.setVisible(true);
+            }
+        });
+        buscarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Modificar modificar = new Modificar();
+                modificar.setLocationRelativeTo(null);
+                modificar.setTitle("Modificar elemento");
+                modificar.pack();
+                modificar.setVisible(true);
+
             }
         });
     }
