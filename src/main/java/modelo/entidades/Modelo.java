@@ -9,7 +9,6 @@ import java.io.Serializable;
 
 @Entity
 @Data
-@NoArgsConstructor
 @Table(name = "modelo")
 public class Modelo implements Serializable {
     @Id
@@ -36,4 +35,7 @@ public class Modelo implements Serializable {
     @ManyToOne
     @JoinColumn(name = "id_eficiencia", referencedColumnName = "id", nullable = false)
     private Eficiencia eficiencia;
+
+    public Modelo() {
+    }
 }

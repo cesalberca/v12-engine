@@ -1,7 +1,6 @@
 package modelo.entidades;
 
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
 import javax.persistence.*;
@@ -10,7 +9,6 @@ import java.util.Collection;
 
 @Entity
 @Data
-@NoArgsConstructor
 @Table(name = "marca")
 public class Marca implements Serializable {
     @Id
@@ -24,4 +22,7 @@ public class Marca implements Serializable {
 
     @OneToMany(mappedBy = "marca")
     private Collection<Modelo> modelos;
+
+    public Marca() {
+    }
 }
