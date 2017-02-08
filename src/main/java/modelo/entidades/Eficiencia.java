@@ -1,14 +1,16 @@
 package modelo.entidades;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Arrays;
 import java.util.Collection;
 
 @Data
 @Entity
+@NoArgsConstructor
 @Table(name = "eficiencia")
 public class Eficiencia implements Serializable {
     @Id
@@ -16,6 +18,7 @@ public class Eficiencia implements Serializable {
     @GeneratedValue
     private int id;
 
+    @NonNull
     @Column(name = "nombre")
     private String nombre;
 

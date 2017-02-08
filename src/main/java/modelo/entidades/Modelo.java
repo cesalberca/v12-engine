@@ -1,12 +1,15 @@
 package modelo.entidades;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
 @Data
+@NoArgsConstructor
 @Table(name = "modelo")
 public class Modelo implements Serializable {
     @Id
@@ -14,12 +17,15 @@ public class Modelo implements Serializable {
     @Column(name = "id")
     private int id;
 
+    @NonNull
     @Column(name = "nombre")
     private String nombre;
 
+    @NonNull
     @Column(name = "consumo")
     private int consumo;
 
+    @NonNull
     @Column(name = "emisiones")
     private int emisiones;
 
