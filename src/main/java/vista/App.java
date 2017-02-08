@@ -3,6 +3,8 @@ package vista;
 import utils.Toast;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class App {
     private JPanel jpPrincipal;
@@ -14,6 +16,7 @@ public class App {
     private JButton marcasButton;
     private JButton filtrarButton;
     private JButton button2;
+
 
     public App() {
         JFrame frame = new JFrame("Gesmotor");
@@ -31,5 +34,15 @@ public class App {
 
         frame.pack();
         frame.setVisible(true);
+        crearButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                CrearMarca marca = new CrearMarca();
+                marca.setLocationRelativeTo(null);
+                marca.setTitle("Crear nueva marca");
+                marca.pack();
+                marca.setVisible(true);
+            }
+        });
     }
 }

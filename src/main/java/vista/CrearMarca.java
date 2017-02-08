@@ -7,11 +7,20 @@ public class CrearMarca extends JDialog {
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonCancel;
+    private JRadioButton rbtnMarca;
+    private JRadioButton eficienciaRadioButton;
+    private JRadioButton modeloRadioButton;
+    private JComboBox cbMarcas;
+    private JComboBox cbModelos;
+    private JTextField tfNombre;
+    private JTextField tfEmisiones;
+    private JTextField tfConsumo;
 
     public CrearMarca() {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
+        this.setTitle("INTRODUZCA EL NOMBRE DE LA MARCA");
 
         buttonOK.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -51,10 +60,4 @@ public class CrearMarca extends JDialog {
         dispose();
     }
 
-    public static void main(String[] args) {
-        CrearMarca dialog = new CrearMarca();
-        dialog.pack();
-        dialog.setVisible(true);
-        System.exit(0);
-    }
 }
