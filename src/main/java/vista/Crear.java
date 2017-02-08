@@ -10,7 +10,7 @@ public class Crear extends JDialog {
     private JButton buttonOK;
     private JButton buttonCancel;
     private JRadioButton rbtnMarca;
-    private JRadioButton modeloRadioButton;
+    private JRadioButton rbtnModelo;
     private JComboBox cbMarcas;
     private JComboBox cbEficiencias;
     private JTextField tfNombre;
@@ -61,7 +61,7 @@ public class Crear extends JDialog {
                 onMarcaSeleccionado();
             }
         });
-        modeloRadioButton.addActionListener(new ActionListener() {
+        rbtnModelo.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 onModeloSeleccionado();
