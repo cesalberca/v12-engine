@@ -80,7 +80,7 @@ public class Crear extends JDialog {
         dispose();
     }
 
-    private void onMarcaSeleccionado(){
+    public void onMarcaSeleccionado(){
         tfNombre.setEnabled(true);
         tfEmisiones.setEnabled(false);
         tfConsumo.setEnabled(false);
@@ -96,4 +96,11 @@ public class Crear extends JDialog {
         cbEficiencias.setEnabled(true);
     }
 
+    public void cerrarDialogo() {
+        dispose();
+    }
+
+    public JButton getButtonOK() {
+        return buttonOK;
+    }
 }

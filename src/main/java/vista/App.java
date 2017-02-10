@@ -1,5 +1,7 @@
 package vista;
 
+import controlador.CreacionControlador;
+import persistencia.GestorPersistencia;
 import utils.Toast;
 
 import javax.swing.*;
@@ -38,11 +40,17 @@ public class App {
         crearButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Crear marca = new Crear();
-                marca.setLocationRelativeTo(null);
-                marca.setTitle("Crear nuevo elemento");
-                marca.pack();
-                marca.setVisible(true);
+                // Creamos vista
+                Crear crear = new Crear();
+                // Creamos gestor (modelo)
+                GestorPersistencia gestorPersistencia = new GestorPersistencia();
+                // Añadimos al controlador la vista y el modelo
+                CreacionControlador creacionControlador = new CreacionControlador(crear, gestorPersistencia);
+
+                crear.setLocationRelativeTo(null);
+                crear.setTitle("Crear nuevo elemento");
+                crear.pack();
+                crear.setVisible(true);
             }
         });
         buscarButton.addActionListener(new ActionListener() {
