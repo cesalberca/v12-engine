@@ -21,4 +21,10 @@ public class Marca implements Serializable {
 
     @OneToMany(mappedBy = "marca")
     private Collection<Modelo> modelos;
+
+
+    public Marca(int id, String nombre) {
+        this.id = id;
+        this.nombre = nombre;
+    }
 }
