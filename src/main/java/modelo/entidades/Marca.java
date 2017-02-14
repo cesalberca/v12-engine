@@ -17,11 +17,13 @@ public class Marca implements Serializable {
     private int id;
 
     @Column(name = "nombre")
-    private final String nombre;
+    private String nombre;
 
-    @OneToMany(mappedBy = "marca")
+    @OneToMany(mappedBy = "marca", fetch = FetchType.EAGER)
     private Collection<Modelo> modelos;
 
+    public Marca() {
+    }
 
     public Marca(int id, String nombre) {
         this.id = id;
