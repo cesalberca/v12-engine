@@ -33,6 +33,12 @@
                   <text value="Crear"/>
                 </properties>
               </component>
+              <component id="ba50d" class="javax.swing.JButton" binding="modificarButton" default-binding="true">
+                <constraints/>
+                <properties>
+                  <text value="Modificar"/>
+                </properties>
+              </component>
               <component id="2cb2f" class="javax.swing.JButton" binding="buscarButton" default-binding="true">
                 <constraints/>
                 <properties>
@@ -43,12 +49,6 @@
                 <constraints/>
                 <properties>
                   <text value="Eliminar"/>
-                </properties>
-              </component>
-              <component id="ba50d" class="javax.swing.JButton" binding="marcasButton" default-binding="true">
-                <constraints/>
-                <properties>
-                  <text value="Marcas"/>
                 </properties>
               </component>
             </children>

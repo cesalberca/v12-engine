@@ -24,29 +24,54 @@ public class Modificar extends JDialog {
         tfNombre.setUI(new HintTextFieldUI("Nombre", true));
         tfConsumo.setUI(new HintTextFieldUI("Consumo", true));
         tfEmisiones.setUI(new HintTextFieldUI("Emisiones", true));
+        tfNombre.setEnabled(false);
+        tfEmisiones.setEnabled(false);
+        tfConsumo.setEnabled(false);
+        cbMarcas.setEnabled(false);
+        cbEficiencias.setEnabled(false);
 
-        buttonOK.addActionListener(e -> onOK());
-        buttonCancel.addActionListener(e -> onCancel());
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
-        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-        addWindowListener(new WindowAdapter() {
-            public void windowClosing(WindowEvent e) {
-                onCancel();
-            }
-        });
-
-        contentPane.registerKeyboardAction(e -> onCancel(), KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
     }
 
-    private void onOK() {
+    public void cerrarDialogo() {
         dispose();
     }
 
-    private void onCancel() {
-        dispose();
+    public JButton getButtonOK() {
+        return buttonOK;
     }
 
-    public JButton getModificarButton() {
-        return this.buttonOK;
+    public JButton getButtonCancel(){
+        return buttonCancel;
+    }
+
+    public JRadioButton getRbtnMarca() {
+        return this.rbtnMarca;
+    }
+
+    public JRadioButton getRbtnModelo(){
+        return this.rbtnModelo;
+    }
+
+    public void mostrarCreadoCorrectamente() {
+        System.out.println("Creado correctamente");
+    }
+
+    public void onMarcaSeleccionado(){
+        tfNombre.setEnabled(true);
+        tfEmisiones.setEnabled(false);
+        tfConsumo.setEnabled(false);
+        cbMarcas.setEnabled(false);
+        cbEficiencias.setEnabled(false);
+    }
+
+    public void onModeloSeleccionado(){
+        tfNombre.setEnabled(true);
+        tfEmisiones.setEnabled(true);
+        tfConsumo.setEnabled(true);
+        cbMarcas.setEnabled(true);
+        cbEficiencias.setEnabled(true);
     }
 }
+

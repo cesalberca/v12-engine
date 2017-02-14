@@ -30,26 +30,15 @@ public class Crear extends JDialog {
         cbMarcas.setEnabled(false);
         cbEficiencias.setEnabled(false);
 
-        buttonCancel.addActionListener(e -> onCancel());
 
-        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-        addWindowListener(new WindowAdapter() {
-            public void windowClosing(WindowEvent e) {
-                onCancel();
-            }
-        });
 
-        contentPane.registerKeyboardAction(e -> onCancel(), KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
-        rbtnModelo.addActionListener(e -> onModeloSeleccionado());
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+
+
+
     }
 
-    private void onOK() {
-        dispose();
-    }
 
-    private void onCancel() {
-        dispose();
-    }
 
     public void onMarcaSeleccionado(){
         tfNombre.setEnabled(true);
@@ -75,8 +64,16 @@ public class Crear extends JDialog {
         return buttonOK;
     }
 
+    public JButton getButtonCancel(){
+        return buttonCancel;
+    }
+
     public JRadioButton getRbtnMarca() {
         return this.rbtnMarca;
+    }
+
+    public JRadioButton getRbtnModelo(){
+        return this.rbtnModelo;
     }
 
     public void mostrarCreadoCorrectamente() {

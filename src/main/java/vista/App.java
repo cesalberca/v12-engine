@@ -14,7 +14,7 @@ public class App {
     private JTextPane textPane1;
     private JButton buscarButton;
     private JButton eliminarButton;
-    private JButton marcasButton;
+    private JButton modificarButton;
     private JButton filtrarButton;
     private JButton button2;
     private JPasswordField passwordField1;
@@ -36,6 +36,6 @@ public class App {
     }
 
     public JButton getModificarButton() {
-        return this.buscarButton;
+        return this.modificarButton;
     }
 }

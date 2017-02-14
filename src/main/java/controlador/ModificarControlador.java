@@ -12,7 +12,7 @@ import java.awt.event.ActionListener;
 public class ModificarControlador {
     private Modificar modificar;
     private GestorPersistencia gestorPersistencia;
-    private ActionListener modificarElementoListener;
+    private ActionListener modificarElementoListener, marcaSeleccionadaListener, modeloSeleccionadoListener, cerrarListener;
 
     public ModificarControlador(Modificar modificar, GestorPersistencia gestorPersistencia) {
         this.modificar = modificar;
@@ -22,10 +22,29 @@ public class ModificarControlador {
     }
 
     private void iniciarListeners() {
-        modificarElementoListener = e -> {
-//                gestorPersistencia.save(elemento);
+        modificarElementoListener = actionEvent -> {
+            modificar.cerrarDialogo();
+            modificar.mostrarCreadoCorrectamente();
         };
 
-        modificar.getModificarButton().addActionListener(modificarElementoListener);
+        modificar.getButtonOK().addActionListener(modificarElementoListener);
+
+        cerrarListener = actionEvent -> {
+            modificar.cerrarDialogo();
+        };
+
+        modificar.getButtonCancel().addActionListener(cerrarListener);
+
+        marcaSeleccionadaListener = actionEvent -> {
+            modificar.onMarcaSeleccionado();
+        };
+
+        modificar.getRbtnMarca().addActionListener(marcaSeleccionadaListener);
+
+        modeloSeleccionadoListener = actionEvent -> {
+            modificar.onModeloSeleccionado();
+        };
+
+        modificar.getRbtnModelo().addActionListener(modeloSeleccionadoListener);
     }
 }
