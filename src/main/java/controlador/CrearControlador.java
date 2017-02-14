@@ -3,15 +3,17 @@ package controlador;
 import persistencia.GestorPersistencia;
 import vista.Crear;
 
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class CreacionControlador {
+/**
+ * Controlador de {@link Crear}
+ */
+public class CrearControlador {
     private Crear crear;
     private GestorPersistencia gestorPersistencia;
     private ActionListener crearListener;
 
-    public CreacionControlador(Crear crear, GestorPersistencia gestorPersistencia) {
+    public CrearControlador(Crear crear, GestorPersistencia gestorPersistencia) {
         this.crear = crear;
         this.gestorPersistencia = gestorPersistencia;
 
@@ -19,9 +21,8 @@ public class CreacionControlador {
     }
 
     private void iniciarListeners() {
-        crearListener = new ActionListener() {
-            public void actionPerformed(ActionEvent actionEvent) {
-            }
+        crearListener = actionEvent -> {
+            crear.mostrarCreadoCorrectamente();
         };
 
         crear.getButtonOK().addActionListener(crearListener);
