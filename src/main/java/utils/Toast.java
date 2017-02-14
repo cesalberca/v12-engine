@@ -22,8 +22,9 @@ public class Toast extends JDialog {
     public static final int LENGTH_SHORT = 3000;
     public static final int LENGTH_LONG = 6000;
     public static final Color ERROR_RED = new Color(121, 0, 0);
+    public static final Color INFO_GOLD = new Color(121, 111, 26);
     public static final Color SUCCESS_GREEN = new Color(46, 178, 59);
-    public static final Color NORMAL_BLACK = new Color(0, 0, 0);
+    public static final Color NORMAL_BLACK = new Color(12, 12, 12);
 
     private final float MAX_OPACITY = 0.7f;
     private final float OPACITY_INCREMENT = 0.05f;
@@ -38,6 +39,10 @@ public class Toast extends JDialog {
     private Color mBackgroundColor = Color.BLACK;
     private Color mForegroundColor = Color.WHITE;
 
+    /**
+     * Toast.makeText(frame, "Annotations were successfully saved.", Toast.Style.SUCCESS).display();
+     * @param owner JFrame desde donde se llama
+     */
     public Toast(JFrame owner) {
         super(owner);
         mOwner = owner;
