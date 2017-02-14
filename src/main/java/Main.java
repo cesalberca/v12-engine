@@ -1,12 +1,12 @@
-import controlador.CreacionControlador;
-import modelo.GestorModelos;
-import persistencia.GestorPersistencia;
+import controlador.AppControlador;
+import org.hibernate.Session;
+import utils.HibernateUtil;
 import vista.App;
-import vista.Crear;
 
 public class Main {
     public static void main(String[] args) {
         App app = new App();
-//        GestorModelos gestorModelos = new GestorModelos();
+        Session sesion = HibernateUtil.getSessionFactory().openSession();
+        AppControlador appControlador = new AppControlador(sesion, app);
     }
 }

@@ -21,8 +21,6 @@ public class CreacionControlador {
     private void iniciarListeners() {
         crearListener = new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
-//                GestorPersistencia.insertar(vista.getModelo());
-                System.out.println("Pulsado desde el controlador");
             }
         };
 

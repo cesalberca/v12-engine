@@ -22,7 +22,7 @@ public class App {
 
 
     public App() {
-        JFrame frame = new JFrame("Gesmotor");
+        JFrame frame = new JFrame("V12 Engine");
 
         try {
             UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
@@ -32,8 +32,6 @@ public class App {
 
         frame.setContentPane(jpPrincipal);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
-        Toast.makeText(frame, "Annotations were successfully saved.", Toast.Style.SUCCESS).display();
 
         frame.pack();
         frame.setVisible(true);
@@ -61,7 +59,6 @@ public class App {
                 modificar.setTitle("Modificar elemento");
                 modificar.pack();
                 modificar.setVisible(true);
-
             }
         });
     }
