@@ -23,4 +23,9 @@ public class Eficiencia implements Serializable {
 
     @OneToMany(mappedBy = "eficiencia")
     private Collection<Modelo> modelos;
+
+    public Eficiencia(int id, String nombre) {
+        this.id = id;
+        this.nombre = nombre;
+    }
 }
