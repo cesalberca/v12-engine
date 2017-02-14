@@ -3,6 +3,7 @@ package controlador;
 import persistencia.GestorPersistencia;
 import vista.App;
 import vista.Crear;
+import vista.Eliminar;
 import vista.Modificar;
 
 import java.awt.event.ActionListener;
@@ -13,7 +14,7 @@ import java.awt.event.ActionListener;
 public class AppControlador {
     private App app;
     private GestorPersistencia gestorPersistencia;
-    private ActionListener abrirEficiencias, abrirModificar;
+    private ActionListener abrirEficiencias, abrirModificar, abrirEliminar;
 
     public AppControlador(App app, GestorPersistencia gestorPersistencia) {
         this.app = app;
@@ -47,5 +48,16 @@ public class AppControlador {
         };
 
         app.getModificarButton().addActionListener(abrirModificar);
+
+        abrirEliminar = actionEvent -> {
+            Eliminar eliminar = new Eliminar();
+            EliminarControlador eliminarControlador = new EliminarControlador(eliminar, gestorPersistencia);
+            eliminar.setLocationRelativeTo(null);
+            eliminar.setTitle("Eliminar elemento");
+            eliminar.pack();
+            eliminar.setVisible(true);
+        };
+
+        app.getEliminarButton().addActionListener(abrirEliminar);
     }
 }

@@ -5,7 +5,7 @@ import utils.HintTextFieldUI;
 import javax.swing.*;
 import java.awt.event.*;
 
-public class Crear extends JDialog {
+public class Eliminar extends JDialog {
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonCancel;
@@ -16,8 +16,10 @@ public class Crear extends JDialog {
     private JTextField tfNombre;
     private JTextField tfEmisiones;
     private JTextField tfConsumo;
+    private JTextField tfEficiencia;
+    private JTextField tfMarca;
 
-    public Crear() {
+    public Eliminar() {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
@@ -27,8 +29,8 @@ public class Crear extends JDialog {
         tfNombre.setEnabled(false);
         tfEmisiones.setEnabled(false);
         tfConsumo.setEnabled(false);
-        cbMarcas.setEnabled(false);
-        cbEficiencias.setEnabled(false);
+        tfMarca.setEnabled(false);
+        tfEficiencia.setEnabled(false);
 
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
@@ -36,18 +38,10 @@ public class Crear extends JDialog {
 
     public void onMarcaSeleccionado(){
         tfNombre.setEnabled(true);
-        tfEmisiones.setEnabled(false);
-        tfConsumo.setEnabled(false);
-        cbMarcas.setEnabled(false);
-        cbEficiencias.setEnabled(false);
     }
 
     public void onModeloSeleccionado(){
         tfNombre.setEnabled(true);
-        tfEmisiones.setEnabled(true);
-        tfConsumo.setEnabled(true);
-        cbMarcas.setEnabled(true);
-        cbEficiencias.setEnabled(true);
     }
 
     public void cerrarDialogo() {
@@ -70,7 +64,7 @@ public class Crear extends JDialog {
         return this.rbtnModelo;
     }
 
-    public void mostrarCreadoCorrectamente() {
-        System.out.println("Creado correctamente");
+    public void mostrarEliminadoCorrectamente() {
+        System.out.println("Eliminado correctamente");
     }
 }

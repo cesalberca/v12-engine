@@ -38,4 +38,8 @@ public class App {
     public JButton getModificarButton() {
         return this.modificarButton;
     }
+
+    public JButton getEliminarButton(){
+        return this.eliminarButton;
+    }
 }

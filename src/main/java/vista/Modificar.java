@@ -54,8 +54,8 @@ public class Modificar extends JDialog {
         return this.rbtnModelo;
     }
 
-    public void mostrarCreadoCorrectamente() {
-        System.out.println("Creado correctamente");
+    public void mostrarModificadoCorrectamente() {
+        System.out.println("Modificado correctamente");
     }
 
     public void onMarcaSeleccionado(){

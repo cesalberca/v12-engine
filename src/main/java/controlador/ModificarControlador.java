@@ -24,7 +24,7 @@ public class ModificarControlador {
     private void iniciarListeners() {
         modificarElementoListener = actionEvent -> {
             modificar.cerrarDialogo();
-            modificar.mostrarCreadoCorrectamente();
+            modificar.mostrarModificadoCorrectamente();
         };
 
         modificar.getButtonOK().addActionListener(modificarElementoListener);
