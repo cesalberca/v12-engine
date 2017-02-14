@@ -29,7 +29,6 @@ public class Crear extends JDialog {
         tfConsumo.setEnabled(false);
         cbMarcas.setEnabled(false);
         cbEficiencias.setEnabled(false);
-        buttonOK.addActionListener(e -> onOK());
 
         buttonCancel.addActionListener(e -> onCancel());
 
@@ -41,7 +40,6 @@ public class Crear extends JDialog {
         });
 
         contentPane.registerKeyboardAction(e -> onCancel(), KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
-        rbtnMarca.addActionListener(e -> onMarcaSeleccionado());
         rbtnModelo.addActionListener(e -> onModeloSeleccionado());
     }
 
@@ -61,7 +59,7 @@ public class Crear extends JDialog {
         cbEficiencias.setEnabled(false);
     }
 
-    private void onModeloSeleccionado(){
+    public void onModeloSeleccionado(){
         tfNombre.setEnabled(true);
         tfEmisiones.setEnabled(true);
         tfConsumo.setEnabled(true);
@@ -75,6 +73,10 @@ public class Crear extends JDialog {
 
     public JButton getButtonOK() {
         return buttonOK;
+    }
+
+    public JRadioButton getRbtnMarca() {
+        return this.rbtnMarca;
     }
 
     public void mostrarCreadoCorrectamente() {
