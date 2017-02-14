@@ -10,7 +10,7 @@ import java.util.List;
 public interface MarcaDao {
 
     List<Marca> getTodasMarcas();
-    Marca getmarca(int id);
+    Marca getMarca(int id);
     void crearMarca(Marca marca);
     void actualizarMarca(Marca marca);
     void eliminarMarca(Marca marca);

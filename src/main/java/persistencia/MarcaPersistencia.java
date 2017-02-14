@@ -15,30 +15,30 @@ import java.util.List;
 public class MarcaPersistencia implements MarcaDao {
 
     @Override
-    public ArrayList<Marca> getTodasMarcas() {
+    public List<Marca> getTodasMarcas() {
         ArrayList<Marca> alMarcas = new ArrayList<Marca>();
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = session.beginTransaction();
         List listMarcas = session.createQuery("FROM Marca").list();
 
-        for (Iterator iterator = listMarcas.iterator(); iterator.hasNext();) {
-
-            Marca marca = (Marca) iterator.next();
-
-            marca = new Marca(marca.getId(),marca.getNombre());
-
-            alMarcas.add(marca);
-
-        }
         tx.commit();
         session.close();
 
-        return alMarcas;
+        return listMarcas;
     }
 
     @Override
-    public Marca getmarca(int id) {
-        return null;
+    public Marca getMarca(int id) {
+
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = session.beginTransaction();
+        Marca marca  = (Marca) session.createQuery("FROM Marca where id =" +id);
+
+
+        tx.commit();
+        session.close();
+
+        return marca;
     }
 
     @Override
