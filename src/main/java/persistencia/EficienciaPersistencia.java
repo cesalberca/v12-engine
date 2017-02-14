@@ -23,18 +23,22 @@ public class EficienciaPersistencia implements EficienciaDao {
 
     @Override
     public Eficiencia getEficiencia(int id) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction tx = session.beginTransaction();
-        Eficiencia eficiencia = session.get(Eficiencia.class, id);
+        Session sesion = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = sesion.beginTransaction();
+        Eficiencia eficiencia = sesion.get(Eficiencia.class, id);
         tx.commit();
-        session.close();
+        sesion.close();
 
         return eficiencia;
     }
 
     @Override
     public void crearEficiencia(Eficiencia eficiencia) {
-
+        Session sesion = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = sesion.beginTransaction();
+        sesion.save(eficiencia);
+        tx.commit();
+        sesion.close();
     }
 
     @Override
