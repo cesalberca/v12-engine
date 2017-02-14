@@ -1,7 +1,12 @@
 package persistencia;
 
+import utils.HibernateUtil;
+
 public class GestorPersistencia {
-    public GestorPersistencia() {
-        System.out.println("test");
+
+    public GestorPersistencia(){
     }
+
+
+
 }
