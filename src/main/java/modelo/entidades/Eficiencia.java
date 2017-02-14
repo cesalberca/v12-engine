@@ -27,6 +27,11 @@ public class Eficiencia implements Serializable {
     public Eficiencia() {
     }
 
+    public Eficiencia(String nombre, byte[] imagen) {
+        this.nombre = nombre;
+        this.imagen = imagen;
+    }
+
     public Eficiencia(int id, String nombre) {
         this.id = id;
         this.nombre = nombre;
