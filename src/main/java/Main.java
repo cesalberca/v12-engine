@@ -1,12 +1,14 @@
 import controlador.AppControlador;
-import org.hibernate.Session;
-import utils.HibernateUtil;
+import persistencia.GestorPersistencia;
 import vista.App;
 
+/**
+ * Clase principal de V12 Engine. Aquí se declara la vista, el gestor de persistencia el controlador de la app
+ */
 public class Main {
     public static void main(String[] args) {
         App app = new App();
-        Session sesion = HibernateUtil.getSessionFactory().openSession();
-        AppControlador appControlador = new AppControlador(sesion, app);
+        GestorPersistencia gestorPersistencia = new GestorPersistencia();
+        AppControlador appControlador = new AppControlador(app, gestorPersistencia);
     }
 }
