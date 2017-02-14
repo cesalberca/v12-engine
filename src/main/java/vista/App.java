@@ -1,8 +1,7 @@
 package vista;
 
-import controlador.CreacionControlador;
+import controlador.CrearControlador;
 import persistencia.GestorPersistencia;
-import utils.Toast;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -20,7 +19,6 @@ public class App {
     private JButton button2;
     private JPasswordField passwordField1;
 
-
     public App() {
         JFrame frame = new JFrame("V12 Engine");
 
@@ -35,31 +33,13 @@ public class App {
 
         frame.pack();
         frame.setVisible(true);
-        crearButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Creamos vista
-                Crear crear = new Crear();
-                // Creamos gestor (modelo)
-                GestorPersistencia gestorPersistencia = new GestorPersistencia();
-                // Añadimos al controlador la vista y el modelo
-                CreacionControlador creacionControlador = new CreacionControlador(crear, gestorPersistencia);
+    }
 
-                crear.setLocationRelativeTo(null);
-                crear.setTitle("Crear nuevo elemento");
-                crear.pack();
-                crear.setVisible(true);
-            }
-        });
-        buscarButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Modificar modificar = new Modificar();
-                modificar.setLocationRelativeTo(null);
-                modificar.setTitle("Modificar elemento");
-                modificar.pack();
-                modificar.setVisible(true);
-            }
-        });
+    public JButton getCrearButton() {
+        return this.crearButton;
+    }
+
+    public JButton getModificarButton() {
+        return this.buscarButton;
     }
 }
