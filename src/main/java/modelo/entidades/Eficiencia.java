@@ -16,13 +16,16 @@ public class Eficiencia implements Serializable {
     private int id;
 
     @Column(name = "nombre")
-    private final String nombre;
+    private String nombre;
 
     @Column(name = "imagen")
     private byte[] imagen;
 
     @OneToMany(mappedBy = "eficiencia")
     private Collection<Modelo> modelos;
+
+    public Eficiencia() {
+    }
 
     public Eficiencia(int id, String nombre) {
         this.id = id;
