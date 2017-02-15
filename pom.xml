@@ -22,12 +22,6 @@
             <version>5.2.6.Final</version>
         </dependency>
         <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.16.12</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
             <groupId>com.jtattoo</groupId>
             <artifactId>JTattoo</artifactId>
             <version>1.6.7</version>
