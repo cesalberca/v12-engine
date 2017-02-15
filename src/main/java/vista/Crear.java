@@ -29,9 +29,7 @@ public class Crear extends JDialog {
         tfConsumo.setEnabled(false);
         cbMarcas.setEnabled(false);
         cbEficiencias.setEnabled(false);
-
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-
     }
 
     public void onMarcaSeleccionado(){
