@@ -21,11 +21,11 @@ public class Modelo implements Serializable {
     @Column(name = "emisiones")
     private int emisiones;
 
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "id_marca", referencedColumnName = "id", nullable = false)
     private Marca marca;
 
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "id_eficiencia", referencedColumnName = "id", nullable = false)
     private Eficiencia eficiencia;
 
