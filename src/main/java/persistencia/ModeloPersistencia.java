@@ -1,7 +1,6 @@
 package persistencia;
 
 
-import modelo.entidades.Eficiencia;
 import modelo.entidades.Modelo;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -11,8 +10,6 @@ import javax.persistence.TypedQuery;
 import java.util.List;
 
 public class ModeloPersistencia implements ModeloDao{
-
-
     @Override
     public List<Modelo> getTodosModelos() {
         Session sesion = HibernateUtil.getSessionFactory().openSession();
@@ -22,7 +19,6 @@ public class ModeloPersistencia implements ModeloDao{
         tx.commit();
         sesion.close();
         return list;
-        
     }
 
     @Override
@@ -33,11 +29,10 @@ public class ModeloPersistencia implements ModeloDao{
         tx.commit();
         sesion.close();
         return modelo;
-
     }
 
     @Override
-    public void createModelo(Modelo modelo) {
+    public void crearModelo(Modelo modelo) {
         Session sesion = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = sesion.beginTransaction();
         sesion.save(modelo);
