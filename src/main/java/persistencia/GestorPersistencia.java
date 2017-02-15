@@ -20,4 +20,16 @@ public class GestorPersistencia {
         Modelo m = new Modelo("308",10,20, marca, eficiencia);
         modeloPersistencia.crearModelo(m);
     }
+
+    public EficienciaPersistencia getEficienciaPersistencia() {
+        return eficienciaPersistencia;
+    }
+
+    public MarcaPersistencia getMarcaPersistencia() {
+        return marcaPersistencia;
+    }
+
+    public ModeloPersistencia getModeloPersistencia() {
+        return modeloPersistencia;
+    }
 }
