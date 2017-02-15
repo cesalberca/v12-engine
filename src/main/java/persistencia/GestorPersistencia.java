@@ -1,6 +1,7 @@
 package persistencia;
 
 import modelo.entidades.Eficiencia;
+import modelo.entidades.Marca;
 import modelo.entidades.Modelo;
 
 import java.util.List;
@@ -8,16 +9,20 @@ import java.util.List;
 public class GestorPersistencia {
 
     public GestorPersistencia(){
-        EficienciaPersistencia eficienciaPersistencia = new EficienciaPersistencia();
-
-        Eficiencia eficienciaActualiazada = eficienciaPersistencia.getEficiencia(2);
-        eficienciaActualiazada.setNombre("Test");
-        eficienciaPersistencia.actualizarEficiencia(eficienciaActualiazada);
-
+//        EficienciaPersistencia eficienciaPersistencia = new EficienciaPersistencia();
+//
+//        Eficiencia eficienciaActualiazada = eficienciaPersistencia.getEficiencia(2);
+//        eficienciaActualiazada.setNombre("Test");
+//        eficienciaPersistencia.actualizarEficiencia(eficienciaActualiazada);
+        
+        Eficiencia eficiencia = new Eficiencia("nuevo","Any String you want".getBytes());
+        Marca marca = new Marca("Peugeot");
         ModeloPersistencia modeloPersistencia = new ModeloPersistencia();
-        Modelo modelo = modeloPersistencia.getModelo(1);
-        //modelo.
-        modeloPersistencia.actualizarModelo(modelo);
+        Modelo m = new Modelo("308",10,20,marca,eficiencia);
+        modeloPersistencia.createModelo(m);
+//        Modelo modelo = modeloPersistencia.getModelo(1);
+//        modelo.setNombre("Ford");
+//        modeloPersistencia.actualizarModelo(modelo);
 
 
 

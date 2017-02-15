@@ -21,8 +21,7 @@ public class Marca implements Serializable {
     public Marca() {
     }
 
-    public Marca(int id, String nombre) {
-        this.id = id;
+    public Marca(String nombre) {
         this.nombre = nombre;
     }
 
