@@ -4,38 +4,20 @@ import modelo.entidades.Eficiencia;
 import modelo.entidades.Marca;
 import modelo.entidades.Modelo;
 
-import java.util.List;
-
 public class GestorPersistencia {
+    private EficienciaPersistencia eficienciaPersistencia;
+    private MarcaPersistencia marcaPersistencia;
+    private ModeloPersistencia modeloPersistencia;
 
-    public GestorPersistencia(){
-//        EficienciaPersistencia eficienciaPersistencia = new EficienciaPersistencia();
-//
-//        Eficiencia eficienciaActualiazada = eficienciaPersistencia.getEficiencia(2);
-//        eficienciaActualiazada.setNombre("Test");
-//        eficienciaPersistencia.actualizarEficiencia(eficienciaActualiazada);
-        
+    public GestorPersistencia() {
+        this.eficienciaPersistencia = new EficienciaPersistencia();
+        this.marcaPersistencia = new MarcaPersistencia();
+        this.modeloPersistencia = new ModeloPersistencia();
+
         Eficiencia eficiencia = new Eficiencia("nuevo","Any String you want".getBytes());
-        Marca marca = new Marca("Peugeot");
+        Marca marca = new Marca("Ferrari");
         ModeloPersistencia modeloPersistencia = new ModeloPersistencia();
-        Modelo m = new Modelo("308",10,20,marca,eficiencia);
-        modeloPersistencia.createModelo(m);
-//        Modelo modelo = modeloPersistencia.getModelo(1);
-//        modelo.setNombre("Ford");
-//        modeloPersistencia.actualizarModelo(modelo);
-
-
-
-
-
-
-//        for (Eficiencia eficiencia : eficienciaPersistencia.getTodasEficiencias()) {
-//            System.out.println(eficiencia);
-//        }
-
-//        System.out.println(eficienciaPersistencia.getEficiencia(2).toString());
-//        byte[] myvar = "Any String you want".getBytes();
-//
-//        eficienciaPersistencia.crearEficiencia(new Eficiencia("Nueva eficiencia", myvar));
+        Modelo m = new Modelo("308",10,20, marca, eficiencia);
+        modeloPersistencia.crearModelo(m);
     }
 }
