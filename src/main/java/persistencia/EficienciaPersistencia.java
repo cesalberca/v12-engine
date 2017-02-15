@@ -14,13 +14,10 @@ public class EficienciaPersistencia implements EficienciaDao {
     public List<Eficiencia> getTodasEficiencias() {
         Session sesion = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = sesion.beginTransaction();
-
         TypedQuery<Eficiencia> query = sesion.createQuery("FROM Eficiencia", Eficiencia.class);
         List<Eficiencia> list = query.getResultList();
-
         tx.commit();
         sesion.close();
-
         return list;
     }
 
@@ -45,11 +42,19 @@ public class EficienciaPersistencia implements EficienciaDao {
 
     @Override
     public void actualizarEficiencia(Eficiencia eficiencia) {
-
+        Session sesion = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = sesion.beginTransaction();
+        sesion.saveOrUpdate(eficiencia);
+        tx.commit();
+        sesion.close();
     }
 
     @Override
     public void eliminarEficiencia(Eficiencia eficiencia) {
-
+        Session sesion = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = sesion.beginTransaction();
+        sesion.delete(eficiencia);
+        tx.commit();
+        sesion.close();
     }
 }
