@@ -1,7 +1,6 @@
 package persistencia;
 
 import modelo.entidades.Eficiencia;
-import modelo.entidades.Marca;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import utils.HibernateUtil;
