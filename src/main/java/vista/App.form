@@ -53,39 +53,21 @@
               </component>
             </children>
           </toolbar>
-          <component id="e7042" class="javax.swing.JTextPane" binding="textPane1" default-binding="true">
+          <grid id="1d53c" layout-manager="BorderLayout" hgap="0" vgap="0">
             <constraints border-constraint="Center"/>
-            <properties/>
-          </component>
-          <toolbar id="cc75b">
-            <constraints border-constraint="South"/>
             <properties/>
             <border type="none"/>
             <children>
-              <component id="2ac9" class="javax.swing.JLabel">
-                <constraints/>
+              <component id="7404c" class="javax.swing.JLabel">
+                <constraints border-constraint="Center"/>
                 <properties>
-                  <text value="Opciones"/>
-                </properties>
-              </component>
-              <component id="64e86" class="javax.swing.JButton" binding="filtrarButton" default-binding="true">
-                <constraints/>
-                <properties>
-                  <text value="Filtrar"/>
-                </properties>
-              </component>
-              <component id="fae04" class="javax.swing.JButton" binding="button2" default-binding="true">
-                <constraints/>
-                <properties>
-                  <text value="Button"/>
+                  <horizontalAlignment value="0"/>
+                  <horizontalTextPosition value="2"/>
+                  <text value="V12 Engine"/>
                 </properties>
               </component>
             </children>
-          </toolbar>
-          <component id="444ca" class="javax.swing.JPasswordField" binding="passwordField1" default-binding="true">
-            <constraints border-constraint="West"/>
-            <properties/>
-          </component>
+          </grid>
         </children>
       </grid>
     </children>

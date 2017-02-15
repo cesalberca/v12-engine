@@ -1,18 +1,15 @@
 package vista;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class App {
     private JPanel jpPrincipal;
     private JToolBar jtbMenu;
     private JButton crearButton;
-    private JTextPane textPane1;
     private JButton buscarButton;
     private JButton eliminarButton;
     private JButton modificarButton;
-    private JButton filtrarButton;
-    private JButton button2;
-    private JPasswordField passwordField1;
 
     public App() {
         JFrame frame = new JFrame("V12 Engine");
@@ -23,10 +20,13 @@ public class App {
             e.printStackTrace();
         }
 
+        frame.setPreferredSize(new Dimension(1200, 800));
+
         frame.setContentPane(jpPrincipal);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         frame.pack();
+        frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }
 
