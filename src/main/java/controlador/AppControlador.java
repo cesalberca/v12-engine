@@ -1,10 +1,7 @@
 package controlador;
 
 import persistencia.GestorPersistencia;
-import vista.App;
-import vista.Crear;
-import vista.Eliminar;
-import vista.Modificar;
+import vista.*;
 
 import java.awt.event.ActionListener;
 
@@ -14,7 +11,7 @@ import java.awt.event.ActionListener;
 public class AppControlador {
     private App app;
     private GestorPersistencia gestorPersistencia;
-    private ActionListener abrirEficiencias, abrirModificar, abrirEliminar;
+    private ActionListener abrirEficiencias, abrirModificar, abrirEliminar, abrirBuscar;
 
     public AppControlador(App app, GestorPersistencia gestorPersistencia) {
         this.app = app;
@@ -48,6 +45,17 @@ public class AppControlador {
         };
 
         app.getModificarButton().addActionListener(abrirModificar);
+
+        abrirBuscar = actionEvent -> {
+            Buscar buscar = new Buscar();
+            new BuscarControlador(buscar, gestorPersistencia);
+            buscar.setTitle("Buscar elemento");
+            buscar.pack();
+            buscar.setLocationRelativeTo(null);
+            buscar.setVisible(true);
+        };
+
+        app.getBuscarButton().addActionListener(abrirBuscar);
 
         abrirEliminar = actionEvent -> {
             Eliminar eliminar = new Eliminar();

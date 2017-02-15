@@ -41,4 +41,8 @@ public class App {
     public JButton getEliminarButton(){
         return this.eliminarButton;
     }
+
+    public JButton getBuscarButton() {
+        return buscarButton;
+    }
 }
