@@ -30,9 +30,9 @@ public class AppControlador {
         abrirEficiencias = actionEvent -> {
             Crear crear = new Crear();
             new CrearControlador(crear, gestorPersistencia);
-            crear.setLocationRelativeTo(null);
             crear.setTitle("Crear nuevo elemento");
             crear.pack();
+            crear.setLocationRelativeTo(null);
             crear.setVisible(true);
         };
 
@@ -41,9 +41,9 @@ public class AppControlador {
         abrirModificar = e -> {
             Modificar modificar = new Modificar();
             new ModificarControlador(modificar, gestorPersistencia);
-            modificar.setLocationRelativeTo(null);
             modificar.setTitle("Modificar elemento");
             modificar.pack();
+            modificar.setLocationRelativeTo(null);
             modificar.setVisible(true);
         };
 
@@ -52,9 +52,9 @@ public class AppControlador {
         abrirEliminar = actionEvent -> {
             Eliminar eliminar = new Eliminar();
             new EliminarControlador(eliminar, gestorPersistencia);
-            eliminar.setLocationRelativeTo(null);
             eliminar.setTitle("Eliminar elemento");
             eliminar.pack();
+            eliminar.setLocationRelativeTo(null);
             eliminar.setVisible(true);
         };
 
