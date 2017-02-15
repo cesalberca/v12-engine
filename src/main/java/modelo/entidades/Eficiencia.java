@@ -19,7 +19,7 @@ public class Eficiencia implements Serializable {
     @Column(name = "imagen")
     private byte[] imagen;
 
-    @OneToMany(mappedBy = "eficiencia", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "eficiencia", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Collection<Modelo> modelos;
 
     public Eficiencia() {

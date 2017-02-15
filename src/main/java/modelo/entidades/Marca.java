@@ -15,7 +15,7 @@ public class Marca implements Serializable {
     @Column(name = "nombre")
     private String nombre;
 
-    @OneToMany(mappedBy = "marca", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "marca", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Collection<Modelo> modelos;
 
     public Marca() {

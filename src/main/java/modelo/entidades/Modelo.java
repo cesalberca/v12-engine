@@ -31,7 +31,6 @@ public class Modelo implements Serializable {
 
     public Modelo() {
     }
-    //constructor de prueba
 
     public Modelo(String nombre, int consumo, int emisiones) {
         this.nombre = nombre;
