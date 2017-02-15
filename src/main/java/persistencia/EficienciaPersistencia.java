@@ -1,24 +1,27 @@
 package persistencia;
 
 import modelo.entidades.Eficiencia;
+import modelo.entidades.Marca;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import utils.HibernateUtil;
 
+import javax.persistence.TypedQuery;
 import java.util.List;
 
 public class EficienciaPersistencia implements EficienciaDao {
     @Override
     public List<Eficiencia> getTodasEficiencias() {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction tx = session.beginTransaction();
+        Session sesion = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = sesion.beginTransaction();
 
-        List<Eficiencia> listEficiencias = session.createQuery("FROM Eficiencia").list();
+        TypedQuery<Eficiencia> query = sesion.createQuery("FROM Eficiencia", Eficiencia.class);
+        List<Eficiencia> list = query.getResultList();
 
         tx.commit();
-        session.close();
+        sesion.close();
 
-        return listEficiencias;
+        return list;
     }
 
     @Override
@@ -28,7 +31,6 @@ public class EficienciaPersistencia implements EficienciaDao {
         Eficiencia eficiencia = sesion.get(Eficiencia.class, id);
         tx.commit();
         sesion.close();
-
         return eficiencia;
     }
 
