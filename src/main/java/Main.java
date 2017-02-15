@@ -9,6 +9,6 @@ public class Main {
     public static void main(String[] args) {
         App app = new App();
         GestorPersistencia gestorPersistencia = new GestorPersistencia();
-        AppControlador appControlador = new AppControlador(app, gestorPersistencia);
+        new AppControlador(app, gestorPersistencia);
     }
 }
