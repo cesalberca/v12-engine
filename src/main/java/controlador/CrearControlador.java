@@ -1,6 +1,9 @@
 package controlador;
 
+import modelo.entidades.Marca;
+import modelo.entidades.Modelo;
 import persistencia.GestorPersistencia;
+import utils.ValidadorCamposEntrada;
 import vista.Crear;
 
 import java.awt.event.ActionListener;
@@ -10,6 +13,7 @@ import java.awt.event.ActionListener;
  */
 public class CrearControlador {
     private Crear crear;
+    private String itemSeleccionado = "";
     private GestorPersistencia gestorPersistencia;
     private ActionListener crearListener, marcaSeleccionadaListener, modeloSeleccionadoListener, cerrarListener;
 
