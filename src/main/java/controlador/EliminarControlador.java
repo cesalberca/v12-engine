@@ -18,29 +18,16 @@ public class EliminarControlador {
     }
 
     private void iniciarListeners() {
-        eliminarElementoListener = actionEvent -> {
-            eliminar.cerrarDialogo();
-            eliminar.mostrarEliminadoCorrectamente();
-        };
-
+        eliminarElementoListener = actionEvent -> eliminar.cerrarDialogo();
         eliminar.getButtonOK().addActionListener(eliminarElementoListener);
 
-        cerrarListener = actionEvent -> {
-            eliminar.cerrarDialogo();
-        };
-
+        cerrarListener = actionEvent -> eliminar.cerrarDialogo();
         eliminar.getButtonCancel().addActionListener(cerrarListener);
 
-        marcaSeleccionadaListener = actionEvent -> {
-            eliminar.onMarcaSeleccionado();
-        };
-
+        marcaSeleccionadaListener = actionEvent -> eliminar.onMarcaSeleccionado();
         eliminar.getRbtnMarca().addActionListener(marcaSeleccionadaListener);
 
-        modeloSeleccionadoListener = actionEvent -> {
-            eliminar.onModeloSeleccionado();
-        };
-
+        modeloSeleccionadoListener = actionEvent -> eliminar.onModeloSeleccionado();
         eliminar.getRbtnModelo().addActionListener(modeloSeleccionadoListener);
     }
 }

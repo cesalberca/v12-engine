@@ -21,29 +21,16 @@ public class CrearControlador {
     }
 
     private void iniciarListeners() {
-        crearListener = actionEvent -> {
-            crear.cerrarDialogo();
-            crear.mostrarCreadoCorrectamente();
-        };
-
+        crearListener = actionEvent -> crear.cerrarDialogo();
         crear.getButtonOK().addActionListener(crearListener);
 
-        cerrarListener = actionEvent -> {
-            crear.cerrarDialogo();
-        };
-
+        cerrarListener = actionEvent -> crear.cerrarDialogo();
         crear.getButtonCancel().addActionListener(cerrarListener);
 
-        marcaSeleccionadaListener = actionEvent -> {
-          crear.onMarcaSeleccionado();
-        };
-
+        marcaSeleccionadaListener = actionEvent -> crear.onMarcaSeleccionado();
         crear.getRbtnMarca().addActionListener(marcaSeleccionadaListener);
 
-        modeloSeleccionadoListener = actionEvent -> {
-            crear.onModeloSeleccionado();
-        };
-
+        modeloSeleccionadoListener = actionEvent -> crear.onModeloSeleccionado();
         crear.getRbtnModelo().addActionListener(modeloSeleccionadoListener);
     }
 }

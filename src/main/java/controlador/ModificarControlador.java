@@ -22,29 +22,16 @@ public class ModificarControlador {
     }
 
     private void iniciarListeners() {
-        modificarElementoListener = actionEvent -> {
-            modificar.cerrarDialogo();
-            modificar.mostrarModificadoCorrectamente();
-        };
-
+        modificarElementoListener = actionEvent -> modificar.cerrarDialogo();
         modificar.getButtonOK().addActionListener(modificarElementoListener);
 
-        cerrarListener = actionEvent -> {
-            modificar.cerrarDialogo();
-        };
-
+        cerrarListener = actionEvent -> modificar.cerrarDialogo();
         modificar.getButtonCancel().addActionListener(cerrarListener);
 
-        marcaSeleccionadaListener = actionEvent -> {
-            modificar.onMarcaSeleccionado();
-        };
-
+        marcaSeleccionadaListener = actionEvent -> modificar.onMarcaSeleccionado();
         modificar.getRbtnMarca().addActionListener(marcaSeleccionadaListener);
 
-        modeloSeleccionadoListener = actionEvent -> {
-            modificar.onModeloSeleccionado();
-        };
-
+        modeloSeleccionadoListener = actionEvent -> modificar.onModeloSeleccionado();
         modificar.getRbtnModelo().addActionListener(modeloSeleccionadoListener);
     }
 }
