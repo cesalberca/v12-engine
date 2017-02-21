@@ -14,11 +14,11 @@ public class GestorPersistencia {
         this.marcaPersistencia = new MarcaPersistencia();
         this.modeloPersistencia = new ModeloPersistencia();
 
-        Eficiencia eficiencia = new Eficiencia("nuevo","Any String you want".getBytes());
-        Marca marca = new Marca("Ferrari");
-        ModeloPersistencia modeloPersistencia = new ModeloPersistencia();
-        Modelo m = new Modelo("308",10,20, marca, eficiencia);
-        modeloPersistencia.crearModelo(m);
+//        Eficiencia eficiencia = new Eficiencia("nuevo","Any String you want".getBytes());
+//        Marca marca = new Marca("Ferrari");
+//        ModeloPersistencia modeloPersistencia = new ModeloPersistencia();
+//        Modelo m = new Modelo("308",10,20, marca, eficiencia);
+//        modeloPersistencia.crearModelo(m);
     }
 
     public EficienciaPersistencia getEficienciaPersistencia() {
