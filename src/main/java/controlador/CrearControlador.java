@@ -1,5 +1,6 @@
 package controlador;
 
+import modelo.entidades.Eficiencia;
 import modelo.entidades.Marca;
 import modelo.entidades.Modelo;
 import persistencia.GestorPersistencia;
@@ -7,6 +8,9 @@ import utils.ValidadorCamposEntrada;
 import vista.Crear;
 
 import java.awt.event.ActionListener;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Vector;
 
 /**
  * Controlador de {@link Crear}
@@ -21,7 +25,31 @@ public class CrearControlador {
         this.crear = crear;
         this.gestorPersistencia = gestorPersistencia;
 
+        this.cargarMarcas();
+        this.cargarEficiencias();
         this.iniciarListeners();
+    }
+
+    private void cargarEficiencias() {
+        List<Eficiencia> eficiencias = gestorPersistencia.getEficienciaPersistencia().getTodasEficiencias();
+        Vector vEficiencias = new Vector();
+
+        for (Eficiencia eficiencia : eficiencias) {
+            vEficiencias.add(eficiencia.getNombre());
+        }
+
+        crear.addModeloEficiencias(vEficiencias);
+    }
+
+    private void cargarMarcas() {
+        List<Marca> marcas = gestorPersistencia.getMarcaPersistencia().getTodasMarcas();
+        Vector vMarcas = new Vector();
+
+        for (Marca marca : marcas) {
+            vMarcas.add(marca.getNombre());
+        }
+
+        crear.addModeloMarcas(vMarcas);
     }
 
     private void iniciarListeners() {

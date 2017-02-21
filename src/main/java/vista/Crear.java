@@ -3,7 +3,8 @@ package vista;
 import utils.HintTextFieldUI;
 
 import javax.swing.*;
-import java.awt.event.*;
+import java.util.List;
+import java.util.Vector;
 
 public class Crear extends JDialog {
     private JPanel contentPane;
@@ -86,5 +87,15 @@ public class Crear extends JDialog {
 
     public void mostrarCreadoCorrectamente() {
         JOptionPane.showMessageDialog(null, "La entrada se ha realizado correctamente");
+    }
+
+    public void addModeloMarcas(Vector marcas) {
+        final DefaultComboBoxModel marcasModel = new DefaultComboBoxModel(marcas);
+        cbMarcas.setModel(marcasModel);
+    }
+
+    public void addModeloEficiencias(Vector eficiencias) {
+        final DefaultComboBoxModel eficienciasModel = new DefaultComboBoxModel(eficiencias);
+        cbEficiencias.setModel(eficienciasModel);
     }
 }
