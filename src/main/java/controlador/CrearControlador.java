@@ -21,16 +21,47 @@ public class CrearControlador {
     }
 
     private void iniciarListeners() {
-        crearListener = actionEvent -> crear.cerrarDialogo();
+        crearListener = actionEvent -> {
+            System.out.println("Entrado en crear");
+            if (ValidadorCamposEntrada.validarCampo(crear.getTfNombre().getText())) {
+                crear.cerrarDialogo();
+
+                // Comprobar si es una marca o si es un modelo
+                switch (itemSeleccionado) {
+                    case "marca":
+                        gestorPersistencia.getMarcaPersistencia().crearMarca(new Marca(crear.getTfNombre().getText()));
+                        break;
+                    case "modelo":
+                        gestorPersistencia.getModeloPersistencia().crearModelo(new Modelo());
+                        break;
+                }
+
+                crear.mostrarCreadoCorrectamente();
+            } else {
+                crear.mostrarCamposErroneos();
+            }
+        };
+
         crear.getButtonOK().addActionListener(crearListener);
 
-        cerrarListener = actionEvent -> crear.cerrarDialogo();
+        cerrarListener = actionEvent -> {
+            crear.cerrarDialogo();
+        };
+
         crear.getButtonCancel().addActionListener(cerrarListener);
 
-        marcaSeleccionadaListener = actionEvent -> crear.onMarcaSeleccionado();
+        marcaSeleccionadaListener = actionEvent -> {
+          crear.onMarcaSeleccionado();
+            this.itemSeleccionado = "marca";
+        };
+
         crear.getRbtnMarca().addActionListener(marcaSeleccionadaListener);
 
-        modeloSeleccionadoListener = actionEvent -> crear.onModeloSeleccionado();
+        modeloSeleccionadoListener = actionEvent -> {
+            crear.onModeloSeleccionado();
+            this.itemSeleccionado = "modelo";
+        };
+
         crear.getRbtnModelo().addActionListener(modeloSeleccionadoListener);
     }
 }
