@@ -68,15 +68,23 @@ public class Crear extends JDialog {
         return this.rbtnModelo;
     }
 
-    public void mostrarCreadoCorrectamente() {
-        System.out.println("Creado correctamente");
-    }
-
     public JTextField getTfNombre() {
         return this.tfNombre;
     }
 
+    public JTextField getTfEmisiones() {
+        return tfEmisiones;
+    }
+
+    public JTextField getTfConsumo() {
+        return tfConsumo;
+    }
+
     public void mostrarCamposErroneos() {
-        JOptionPane.showMessageDialog(null, "El campo nombre no puede tener números");
+        JOptionPane.showMessageDialog(null, "El campo nombre no puede estar vacío");
+    }
+
+    public void mostrarCreadoCorrectamente() {
+        JOptionPane.showMessageDialog(null, "La entrada se ha realizado correctamente");
     }
 }

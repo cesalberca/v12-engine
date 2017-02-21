@@ -26,22 +26,9 @@ public class CrearControlador {
 
     private void iniciarListeners() {
         crearListener = actionEvent -> {
-            System.out.println("Entrado en crear");
-            if (ValidadorCamposEntrada.validarCampo(crear.getTfNombre().getText())) {
-                crear.cerrarDialogo();
-
-                // Comprobar si es una marca o si es un modelo
-                switch (itemSeleccionado) {
-                    case "marca":
-                        gestorPersistencia.getMarcaPersistencia().crearMarca(new Marca(crear.getTfNombre().getText()));
-                        break;
-                    case "modelo":
-                        gestorPersistencia.getModeloPersistencia().crearModelo(new Modelo());
-                        break;
-                }
-
-                crear.mostrarCreadoCorrectamente();
-            } else {
+            try {
+                this.crearEntrada();
+            } catch (Exception e) {
                 crear.mostrarCamposErroneos();
             }
         };
@@ -67,5 +54,30 @@ public class CrearControlador {
         };
 
         crear.getRbtnModelo().addActionListener(modeloSeleccionadoListener);
+    }
+
+    private void crearEntrada() throws Exception {
+        if (ValidadorCamposEntrada.validarCampo(crear.getTfNombre().getText())) {
+            crear.cerrarDialogo();
+
+            // Comprobar si es una marca o si es un modelo
+            switch (itemSeleccionado) {
+                case "marca":
+                    gestorPersistencia.getMarcaPersistencia().crearMarca(new Marca(crear.getTfNombre().getText()));
+                    break;
+                case "modelo":
+                    Modelo modelo = new Modelo(
+                        crear.getTfNombre().getText(),
+                        Integer.parseInt(crear.getTfConsumo().getText()),
+                        Integer.parseInt(crear.getTfEmisiones().getText())
+                    );
+                    gestorPersistencia.getModeloPersistencia().crearModelo(modelo);
+                    break;
+            }
+
+            crear.mostrarCreadoCorrectamente();
+        } else {
+            crear.mostrarCamposErroneos();
+        }
     }
 }
