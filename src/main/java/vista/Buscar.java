@@ -11,9 +11,9 @@ public class Buscar extends JDialog {
     private JCheckBox cbClasificacion;
     private JCheckBox cbEmisiones;
     private JCheckBox cbConsumo;
-    private JTextField textField1;
-    private JTextField textField2;
-    private JTextField textField3;
+    private JTextField tfConsumo;
+    private JTextField tfEmisiones;
+    private JTextField tfClasificacion;
     private JTable jtResultados;
     private JCheckBox cbMarca;
 
@@ -25,29 +25,34 @@ public class Buscar extends JDialog {
     }
 
     public void onMarcaSeleccionado(){
-        cbbMarca.setEnabled(true);
+        if(cbMarca.isSelected()){
+            cbbMarca.setEnabled(true);
+        }else{
+            cbbMarca.setEnabled(false);
+        }
     }
     public void onConsumoSeleccionado(){
-        cbConsumo.setEnabled(true);
+        if(cbConsumo.isSelected()){
+            tfConsumo.setEnabled(true);
+        }else{
+            tfConsumo.setEnabled(false);
+        }
     }
     public void onEmisionesSeleccionado(){
-        cbEmisiones.setEnabled(true);
+        if(cbEmisiones.isSelected()){
+            tfEmisiones.setEnabled(true);
+        }else{
+            tfEmisiones.setEnabled(false);
+        }
     }
     public void onClasificacionSeleccionado(){
-        cbClasificacion.setEnabled(true);
+        if(cbClasificacion.isSelected()){
+            tfClasificacion.setEnabled(true);
+        }else{
+            tfClasificacion.setEnabled(false);
+        }
     }
-    public void onMarcaDeseleccionado(){
-        cbbMarca.setEnabled(false);
-    }
-    public void onConsumoDeseleccionado(){
-        cbConsumo.setEnabled(false);
-    }
-    public void onEmisionesDeseleccionado(){
-        cbEmisiones.setEnabled(false);
-    }
-    public void onClasificacionDeseleccionado(){
-        cbClasificacion.setEnabled(false);
-    }
+
 
     public JButton getButtonOK() {
         return buttonOK;
@@ -77,12 +82,4 @@ public class Buscar extends JDialog {
         dispose();
     }
 
-
-    //TODO Quitar esto de aquí
-    public static void main(String[] args) {
-        Buscar dialog = new Buscar();
-        dialog.pack();
-        dialog.setVisible(true);
-        System.exit(0);
-    }
 }
