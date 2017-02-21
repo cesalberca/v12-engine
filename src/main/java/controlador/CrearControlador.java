@@ -58,8 +58,6 @@ public class CrearControlador {
 
     private void crearEntrada() throws Exception {
         if (ValidadorCamposEntrada.validarCampo(crear.getTfNombre().getText())) {
-            crear.cerrarDialogo();
-
             // Comprobar si es una marca o si es un modelo
             switch (itemSeleccionado) {
                 case "marca":
@@ -76,6 +74,7 @@ public class CrearControlador {
             }
 
             crear.mostrarCreadoCorrectamente();
+            crear.cerrarDialogo();
         } else {
             crear.mostrarCamposErroneos();
         }

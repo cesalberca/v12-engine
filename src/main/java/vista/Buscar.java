@@ -11,11 +11,11 @@ public class Buscar extends JDialog {
     private JCheckBox cbClasificacion;
     private JCheckBox cbEmisiones;
     private JCheckBox cbConsumo;
-    private JTextField tfConsumo;
-    private JTextField tfEmisiones;
-    private JTextField tfClasificacion;
     private JTable jtResultados;
     private JCheckBox cbMarca;
+    private JComboBox cbbConsumo;
+    private JComboBox cbbEmisiones;
+    private JComboBox cbbClasificacion;
 
     public Buscar() {
         setContentPane(contentPane);
@@ -33,23 +33,23 @@ public class Buscar extends JDialog {
     }
     public void onConsumoSeleccionado(){
         if(cbConsumo.isSelected()){
-            tfConsumo.setEnabled(true);
+            cbbConsumo.setEnabled(true);
         }else{
-            tfConsumo.setEnabled(false);
+            cbbConsumo.setEnabled(false);
         }
     }
     public void onEmisionesSeleccionado(){
         if(cbEmisiones.isSelected()){
-            tfEmisiones.setEnabled(true);
+            cbbEmisiones.setEnabled(true);
         }else{
-            tfEmisiones.setEnabled(false);
+            cbbEmisiones.setEnabled(false);
         }
     }
     public void onClasificacionSeleccionado(){
         if(cbClasificacion.isSelected()){
-            tfClasificacion.setEnabled(true);
+            cbbClasificacion.setEnabled(true);
         }else{
-            tfClasificacion.setEnabled(false);
+            cbbClasificacion.setEnabled(false);
         }
     }
 
