@@ -71,4 +71,12 @@ public class Crear extends JDialog {
     public void mostrarCreadoCorrectamente() {
         System.out.println("Creado correctamente");
     }
+
+    public JTextField getTfNombre() {
+        return this.tfNombre;
+    }
+
+    public void mostrarCamposErroneos() {
+        JOptionPane.showMessageDialog(null, "El campo nombre no puede tener números");
+    }
 }
