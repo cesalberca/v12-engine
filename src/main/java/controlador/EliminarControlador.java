@@ -5,9 +5,6 @@ import vista.Eliminar;
 
 import java.awt.event.ActionListener;
 
-/**
- * Created by juanxxiii on 14/02/2017.
- */
 public class EliminarControlador {
     private Eliminar eliminar;
     private GestorPersistencia gestorPersistencia;
