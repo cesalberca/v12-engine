@@ -1,5 +1,6 @@
 package controlador;
 
+import modelo.Exportador;
 import persistencia.GestorPersistencia;
 import vista.*;
 
@@ -14,6 +15,7 @@ import java.util.Vector;
 public class AppControlador {
     private App app;
     private GestorPersistencia gestorPersistencia;
+    private ActionListener abrirEficiencias, abrirModificar, abrirEliminar, abrirBuscar, exportar;
     private ActionListener abrirEficiencias, abrirModificar, abrirEliminar, abrirBuscar;
     private Vector<String> vResultados;
     private Vector<String> datos;
@@ -74,6 +76,14 @@ public class AppControlador {
         };
 
         app.getEliminarButton().addActionListener(abrirEliminar);
+
+        exportar = actionEvent -> {
+            String ruta = "path";
+            Exportador.csv(gestorPersistencia.getModeloPersistencia().getTodosModelos(), ruta);
+            app.notificarExportacionCompletada();
+        };
+
+        app.getExportarButton().addActionListener(exportar);
     }
 
     private void iniciarTabla(){
