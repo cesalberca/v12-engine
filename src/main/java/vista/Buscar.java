@@ -11,11 +11,11 @@ public class Buscar extends JDialog {
     private JCheckBox cbClasificacion;
     private JCheckBox cbEmisiones;
     private JCheckBox cbConsumo;
-    private JTable jtResultados;
     private JCheckBox cbMarca;
     private JComboBox cbbConsumo;
     private JComboBox cbbEmisiones;
     private JComboBox cbbClasificacion;
+    private JSlider sConsumo;
 
     public Buscar() {
         setContentPane(contentPane);
