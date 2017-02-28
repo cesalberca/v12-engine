@@ -3,6 +3,7 @@ package vista;
 import utils.Toast;
 
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 
 public class App {
@@ -65,6 +66,9 @@ public class App {
 
     public String getRutaParaExportar() {
         JFileChooser jFileChooser = new JFileChooser();
+        FileNameExtensionFilter filter = new FileNameExtensionFilter(".csv", "csv");
+        jFileChooser.setFileFilter(filter);
+
         if (jFileChooser.showOpenDialog(frame) == JFileChooser.APPROVE_OPTION) {
             return jFileChooser.getSelectedFile().getAbsolutePath();
         } else {
