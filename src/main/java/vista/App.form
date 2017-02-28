@@ -58,11 +58,15 @@
             <properties/>
             <border type="none"/>
             <children>
-              <component id="7404c" class="javax.swing.JLabel">
+              <component id="a5047" class="javax.swing.JTable" binding="jtResultados">
                 <constraints border-constraint="Center"/>
+                <properties/>
+              </component>
+              <component id="87eae" class="javax.swing.JLabel">
+                <constraints border-constraint="North"/>
                 <properties>
                   <horizontalAlignment value="0"/>
-                  <horizontalTextPosition value="2"/>
+                  <horizontalTextPosition value="0"/>
                   <text value="V12 Engine"/>
                 </properties>
               </component>

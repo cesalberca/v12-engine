@@ -10,6 +10,7 @@ public class App {
     private JButton buscarButton;
     private JButton eliminarButton;
     private JButton modificarButton;
+    private JTable jtResultados;
 
     public App() {
         JFrame frame = new JFrame("V12 Engine");
@@ -44,5 +45,9 @@ public class App {
 
     public JButton getBuscarButton() {
         return buscarButton;
+    }
+
+    public JTable getJtResultados(){
+        return jtResultados;
     }
 }
