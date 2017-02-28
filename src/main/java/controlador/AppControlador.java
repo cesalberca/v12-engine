@@ -17,7 +17,6 @@ public class AppControlador {
     private App app;
     private GestorPersistencia gestorPersistencia;
     private ActionListener abrirEficiencias, abrirModificar, abrirEliminar, abrirBuscar, exportar;
-    private ActionListener abrirEficiencias, abrirModificar, abrirEliminar, abrirBuscar;
     private Vector<String> vResultados;
     private Vector<String> datos;
     private DefaultTableModel dtm;
