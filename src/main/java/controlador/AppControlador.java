@@ -3,7 +3,10 @@ package controlador;
 import persistencia.GestorPersistencia;
 import vista.*;
 
+import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
+import java.util.Vector;
 
 /**
  * Controlador principal de la vista. Aquí se inicializan todos los action listeners.
@@ -12,12 +15,16 @@ public class AppControlador {
     private App app;
     private GestorPersistencia gestorPersistencia;
     private ActionListener abrirEficiencias, abrirModificar, abrirEliminar, abrirBuscar;
+    private Vector<String> vResultados;
+    private Vector<String> datos;
+    private DefaultTableModel dtm;
 
     public AppControlador(App app, GestorPersistencia gestorPersistencia) {
         this.app = app;
         this.gestorPersistencia = gestorPersistencia;
 
         this.iniciarListeners();
+        this.iniciarTabla();
     }
 
     /**
@@ -67,5 +74,12 @@ public class AppControlador {
         };
 
         app.getEliminarButton().addActionListener(abrirEliminar);
+    }
+
+    private void iniciarTabla(){
+        vResultados = new Vector<>(Arrays.asList("Nombre marca", "Nombre modelo", "Consumo", "Emisiones", "Clasificación energética"));
+
+        dtm = new DefaultTableModel(vResultados,5);
+        app.getJtResultados().setModel(dtm);
     }
 }

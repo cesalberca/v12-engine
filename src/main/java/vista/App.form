@@ -58,18 +58,22 @@
             <properties/>
             <border type="none"/>
             <children>
-              <component id="a5047" class="javax.swing.JTable" binding="jtResultados">
+              <scrollpane id="d5059">
                 <constraints border-constraint="Center"/>
                 <properties/>
-              </component>
-              <component id="87eae" class="javax.swing.JLabel">
-                <constraints border-constraint="North"/>
-                <properties>
-                  <horizontalAlignment value="0"/>
-                  <horizontalTextPosition value="0"/>
-                  <text value="V12 Engine"/>
-                </properties>
-              </component>
+                <border type="none"/>
+                <children>
+                  <component id="a5047" class="javax.swing.JTable" binding="jtResultados">
+                    <constraints/>
+                    <properties>
+                      <autoResizeMode value="2"/>
+                      <editingColumn value="-1"/>
+                      <editingRow value="-1"/>
+                      <enabled value="true"/>
+                    </properties>
+                  </component>
+                </children>
+              </scrollpane>
             </children>
           </grid>
         </children>
