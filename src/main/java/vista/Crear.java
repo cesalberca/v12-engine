@@ -98,4 +98,12 @@ public class Crear extends JDialog {
         final DefaultComboBoxModel eficienciasModel = new DefaultComboBoxModel(eficiencias);
         cbEficiencias.setModel(eficienciasModel);
     }
+
+    public JComboBox getCbMarcas() {
+        return cbMarcas;
+    }
+
+    public JComboBox getCbEficiencias() {
+        return cbEficiencias;
+    }
 }

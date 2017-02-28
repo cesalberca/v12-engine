@@ -20,6 +20,8 @@ public class CrearControlador {
     private String itemSeleccionado = "";
     private GestorPersistencia gestorPersistencia;
     private ActionListener crearListener, marcaSeleccionadaListener, modeloSeleccionadoListener, cerrarListener;
+    private List<Eficiencia> eficiencias;
+    private List<Marca> marcas;
 
     public CrearControlador(Crear crear, GestorPersistencia gestorPersistencia) {
         this.crear = crear;
@@ -31,7 +33,7 @@ public class CrearControlador {
     }
 
     private void cargarEficiencias() {
-        List<Eficiencia> eficiencias = gestorPersistencia.getEficienciaPersistencia().getTodasEficiencias();
+        eficiencias = gestorPersistencia.getEficienciaPersistencia().getTodasEficiencias();
         Vector vEficiencias = new Vector();
 
         for (Eficiencia eficiencia : eficiencias) {
@@ -42,7 +44,7 @@ public class CrearControlador {
     }
 
     private void cargarMarcas() {
-        List<Marca> marcas = gestorPersistencia.getMarcaPersistencia().getTodasMarcas();
+        marcas = gestorPersistencia.getMarcaPersistencia().getTodasMarcas();
         Vector vMarcas = new Vector();
 
         for (Marca marca : marcas) {
@@ -57,7 +59,8 @@ public class CrearControlador {
             try {
                 this.crearEntrada();
             } catch (Exception e) {
-                crear.mostrarCamposErroneos();
+//                crear.mostrarCamposErroneos();
+                System.out.println(e);
             }
         };
 
@@ -84,27 +87,28 @@ public class CrearControlador {
         crear.getRbtnModelo().addActionListener(modeloSeleccionadoListener);
     }
 
-    private void crearEntrada() throws Exception {
-        if (ValidadorCamposEntrada.validarCampo(crear.getTfNombre().getText())) {
-            // Comprobar si es una marca o si es un modelo
-            switch (itemSeleccionado) {
-                case "marca":
-                    gestorPersistencia.getMarcaPersistencia().crearMarca(new Marca(crear.getTfNombre().getText()));
-                    break;
-                case "modelo":
-                    Modelo modelo = new Modelo(
-                        crear.getTfNombre().getText(),
-                        Integer.parseInt(crear.getTfConsumo().getText()),
-                        Integer.parseInt(crear.getTfEmisiones().getText())
-                    );
-                    gestorPersistencia.getModeloPersistencia().crearModelo(modelo);
-                    break;
-            }
+    private void crearEntrada() {
+        // Comprobar si es una marca o si es un modelo
+        switch (itemSeleccionado) {
+            case "marca":
+                gestorPersistencia.getMarcaPersistencia().crearMarca(new Marca(crear.getTfNombre().getText()));
+                break;
+            case "modelo":
+                Marca marcaSeleccionada = marcas.get(crear.getCbMarcas().getSelectedIndex());
+                Eficiencia eficienciaSeleccionada = eficiencias.get(crear.getCbEficiencias().getSelectedIndex());
+                Modelo modelo = new Modelo(
+                    crear.getTfNombre().getText(),
+                    Integer.parseInt(crear.getTfConsumo().getText()),
+                    Integer.parseInt(crear.getTfEmisiones().getText())
+                );
 
-            crear.mostrarCreadoCorrectamente();
-            crear.cerrarDialogo();
-        } else {
-            crear.mostrarCamposErroneos();
+                modelo.setMarca(marcaSeleccionada);
+                modelo.setEficiencia(eficienciaSeleccionada);
+                gestorPersistencia.getModeloPersistencia().crearModelo(modelo);
+                break;
         }
+
+        crear.mostrarCreadoCorrectamente();
+        crear.cerrarDialogo();
     }
 }
