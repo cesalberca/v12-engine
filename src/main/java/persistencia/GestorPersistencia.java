@@ -1,9 +1,5 @@
 package persistencia;
 
-import modelo.entidades.Eficiencia;
-import modelo.entidades.Marca;
-import modelo.entidades.Modelo;
-
 public class GestorPersistencia {
     private EficienciaPersistencia eficienciaPersistencia;
     private MarcaPersistencia marcaPersistencia;
@@ -13,12 +9,6 @@ public class GestorPersistencia {
         this.eficienciaPersistencia = new EficienciaPersistencia();
         this.marcaPersistencia = new MarcaPersistencia();
         this.modeloPersistencia = new ModeloPersistencia();
-
-//        Eficiencia eficiencia = new Eficiencia("nuevo","Any String you want".getBytes());
-//        Marca marca = new Marca("Ferrari");
-//        ModeloPersistencia modeloPersistencia = new ModeloPersistencia();
-//        Modelo m = new Modelo("308",10,20, marca, eficiencia);
-//        modeloPersistencia.crearModelo(m);
     }
 
     public EficienciaPersistencia getEficienciaPersistencia() {
