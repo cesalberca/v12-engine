@@ -4,11 +4,9 @@ import modelo.entidades.Eficiencia;
 import modelo.entidades.Marca;
 import modelo.entidades.Modelo;
 import persistencia.GestorPersistencia;
-import utils.ValidadorCamposEntrada;
 import vista.Crear;
 
 import java.awt.event.ActionListener;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Vector;
 
@@ -59,7 +57,7 @@ public class CrearControlador {
             try {
                 this.crearEntrada();
             } catch (Exception e) {
-//                crear.mostrarCamposErroneos();
+                crear.mostrarError();
                 System.out.println(e);
             }
         };

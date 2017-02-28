@@ -106,4 +106,8 @@ public class Crear extends JDialog {
     public JComboBox getCbEficiencias() {
         return cbEficiencias;
     }
+
+    public void mostrarError() {
+        JOptionPane.showMessageDialog(null, "Error al crear la entrada correctamente");
+    }
 }
