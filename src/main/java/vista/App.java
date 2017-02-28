@@ -1,9 +1,12 @@
 package vista;
 
+import utils.Toast;
+
 import javax.swing.*;
 import java.awt.*;
 
 public class App {
+    private JFrame frame;
     private JPanel jpPrincipal;
     private JToolBar jtbMenu;
     private JButton crearButton;
@@ -14,7 +17,7 @@ public class App {
     private JTable jtResultados;
 
     public App() {
-        JFrame frame = new JFrame("V12 Engine");
+        frame = new JFrame("V12 Engine");
 
         try {
             UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
@@ -50,6 +53,10 @@ public class App {
 
     public JButton getExportarButton() {
         return exportarButton;
+    }
+
+    public void notificarExportacionCompletada() {
+        Toast.makeText(frame, "Exportación completada con éxito", Toast.Style.NORMAL).display();
     }
 
     public JTable getJtResultados(){
