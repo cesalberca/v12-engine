@@ -96,6 +96,16 @@ public class AppControlador {
         app.getExportarButton().addActionListener(exportar);
     }
 
+//    Eficiencia eficiencia = this.eficienciaPersistencia.getEficiencia(1);
+//        try {
+//        byte[] imagen = eficiencia.getImagen().getBytes(1,(int) eficiencia.getImagen().length());
+//        for (int i = 0; i < imagen.length; i++) {
+//            System.out.println(imagen[i]);
+//        }
+//    } catch (SQLException e) {
+//        e.printStackTrace();
+//    }
+
     private void iniciarTabla(){
         vResultados = new Vector<>(Arrays.asList("Nombre marca", "Nombre modelo", "Consumo", "Emisiones", "Clasificación energética"));
 

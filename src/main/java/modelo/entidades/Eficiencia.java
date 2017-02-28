@@ -2,7 +2,7 @@ package modelo.entidades;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Arrays;
+import java.sql.Blob;
 import java.util.Collection;
 
 @Entity
@@ -17,7 +17,8 @@ public class Eficiencia implements Serializable {
     private String nombre;
 
     @Column(name = "imagen")
-    private byte[] imagen;
+    @Lob
+    private Blob imagen;
 
     @OneToMany(mappedBy = "eficiencia", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Collection<Modelo> modelos;
@@ -25,31 +26,9 @@ public class Eficiencia implements Serializable {
     public Eficiencia() {
     }
 
-    public Eficiencia(String nombre, byte[] imagen) {
+    public Eficiencia(String nombre, Blob imagen) {
         this.nombre = nombre;
         this.imagen = imagen;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Eficiencia)) return false;
-
-        Eficiencia that = (Eficiencia) o;
-
-        if (id != that.id) return false;
-        if (nombre != null ? !nombre.equals(that.nombre) : that.nombre != null) return false;
-        if (!Arrays.equals(imagen, that.imagen)) return false;
-        return modelos != null ? modelos.equals(that.modelos) : that.modelos == null;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = id;
-        result = 31 * result + (nombre != null ? nombre.hashCode() : 0);
-        result = 31 * result + Arrays.hashCode(imagen);
-        result = 31 * result + (modelos != null ? modelos.hashCode() : 0);
-        return result;
     }
 
     public int getId() {
@@ -64,14 +43,6 @@ public class Eficiencia implements Serializable {
         this.nombre = nombre;
     }
 
-    public byte[] getImagen() {
-        return imagen;
-    }
-
-    public void setImagen(byte[] imagen) {
-        this.imagen = imagen;
-    }
-
     public Collection<Modelo> getModelos() {
         return modelos;
     }
@@ -80,13 +51,29 @@ public class Eficiencia implements Serializable {
         this.modelos = modelos;
     }
 
+    public Blob getImagen() {
+        return imagen;
+    }
+
     @Override
-    public String toString() {
-        return "Eficiencia{" +
-            "id=" + id +
-            ", nombre='" + nombre + '\'' +
-            ", imagen=" + Arrays.toString(imagen) +
-            ", modelos=" + modelos +
-            '}';
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Eficiencia)) return false;
+
+        Eficiencia that = (Eficiencia) o;
+
+        if (id != that.id) return false;
+        if (nombre != null ? !nombre.equals(that.nombre) : that.nombre != null) return false;
+        if (imagen != null ? !imagen.equals(that.imagen) : that.imagen != null) return false;
+        return modelos != null ? modelos.equals(that.modelos) : that.modelos == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + (nombre != null ? nombre.hashCode() : 0);
+        result = 31 * result + (imagen != null ? imagen.hashCode() : 0);
+        result = 31 * result + (modelos != null ? modelos.hashCode() : 0);
+        return result;
     }
 }
