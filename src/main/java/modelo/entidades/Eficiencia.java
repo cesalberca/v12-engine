@@ -76,4 +76,12 @@ public class Eficiencia implements Serializable {
         result = 31 * result + (modelos != null ? modelos.hashCode() : 0);
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "Eficiencia{" +
+            "id=" + id +
+            ", nombre='" + nombre + '\'' +
+            '}';
+    }
 }
