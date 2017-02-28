@@ -6,6 +6,7 @@ import vista.*;
 
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Vector;
 
@@ -78,9 +79,18 @@ public class AppControlador {
         app.getEliminarButton().addActionListener(abrirEliminar);
 
         exportar = actionEvent -> {
-            String ruta = "path";
-            Exportador.csv(gestorPersistencia.getModeloPersistencia().getTodosModelos(), ruta);
-            app.notificarExportacionCompletada();
+            String ruta = app.getRutaParaExportar();
+
+            if (ruta.isEmpty()) {
+                app.notificarErrorExportacion();
+            } else {
+                try {
+                    Exportador.csv(gestorPersistencia.getModeloPersistencia().getTodosModelos(), ruta);
+                    app.notificarExportacionCompletada();
+                } catch (IOException e) {
+                    app.notificarErrorExportacion();
+                }
+            }
         };
 
         app.getExportarButton().addActionListener(exportar);

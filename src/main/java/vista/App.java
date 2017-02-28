@@ -63,6 +63,15 @@ public class App {
         Toast.makeText(frame, "Error al exportar", Toast.Style.ERROR).display();
     }
 
+    public String getRutaParaExportar() {
+        JFileChooser jFileChooser = new JFileChooser();
+        if (jFileChooser.showOpenDialog(frame) == JFileChooser.APPROVE_OPTION) {
+            return jFileChooser.getSelectedFile().getAbsolutePath();
+        } else {
+            return "";
+        }
+    }
+
     public JTable getJtResultados(){
         return jtResultados;
     }
