@@ -10,6 +10,7 @@ public class App {
     private JButton buscarButton;
     private JButton eliminarButton;
     private JButton modificarButton;
+    private JButton exportarButton;
     private JTable jtResultados;
 
     public App() {
@@ -45,6 +46,10 @@ public class App {
 
     public JButton getBuscarButton() {
         return buscarButton;
+    }
+
+    public JButton getExportarButton() {
+        return exportarButton;
     }
 
     public JTable getJtResultados(){

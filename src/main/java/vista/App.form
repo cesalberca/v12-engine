@@ -51,6 +51,12 @@
                   <text value="Eliminar"/>
                 </properties>
               </component>
+              <component id="ace25" class="javax.swing.JButton" binding="exportarButton">
+                <constraints/>
+                <properties>
+                  <text value="Exportar"/>
+                </properties>
+              </component>
             </children>
           </toolbar>
           <grid id="1d53c" layout-manager="BorderLayout" hgap="0" vgap="0">
