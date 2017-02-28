@@ -59,6 +59,10 @@ public class App {
         Toast.makeText(frame, "Exportación completada con éxito", Toast.Style.NORMAL).display();
     }
 
+    public void notificarErrorExportacion() {
+        Toast.makeText(frame, "Error al exportar", Toast.Style.ERROR).display();
+    }
+
     public JTable getJtResultados(){
         return jtResultados;
     }
