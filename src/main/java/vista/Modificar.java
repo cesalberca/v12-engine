@@ -4,6 +4,7 @@ import utils.HintTextFieldUI;
 
 import javax.swing.*;
 import java.awt.event.*;
+import java.util.Vector;
 
 public class Modificar extends JDialog {
     private JPanel contentPane;
@@ -33,7 +34,15 @@ public class Modificar extends JDialog {
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
     }
+    public void addModeloEficiencias(Vector eficiencias) {
+        final DefaultComboBoxModel eficienciasModel = new DefaultComboBoxModel(eficiencias);
+        cbEficiencias.setModel(eficienciasModel);
+    }
 
+    public void addModeloMarcas(Vector marcas) {
+        final DefaultComboBoxModel marcasModel = new DefaultComboBoxModel(marcas);
+        cbMarcas.setModel(marcasModel);
+    }
     public void cerrarDialogo() {
         dispose();
     }
