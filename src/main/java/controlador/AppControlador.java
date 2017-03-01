@@ -112,24 +112,33 @@ public class AppControlador {
         Eficiencia eficiencia = eficienciaPersistencia.getEficiencia(1);
 
         //adaptador de renderizar la jtable y poder meter un jlabel
-        app.getJtResultados().setDefaultRenderer(Object.class, new AdaptadorTabla()); //aqui se renderiza
+        //aqui se renderiza
+        app.getJtResultados().setDefaultRenderer(Object.class, new AdaptadorTabla());
         //altura de los registros
         app.getJtResultados().setRowHeight(50);
-        vResultados = new Vector<>(Arrays.asList("Nombre marca", "Nombre modelo", "Consumo", "Emisiones", "Clasificación energética", "Fotografía"));
+        vResultados = new Vector<>(
+            Arrays.asList(
+                "Nombre marca",
+                "Nombre modelo",
+                "Consumo",
+                "Emisiones",
+                "Clasificación energética",
+                "Fotografía"
+            )
+        );
+
         dtm = new DefaultTableModel(vResultados,0);
         for (Modelo model: modelo.getTodosModelos()) {
             try {
                 //aqui pasamos la foto
-                byte[] imagen = eficiencia.getImagen().getBytes(1, (int) eficiencia.getImagen().length()-1);
+                byte[] imagen = eficiencia.getImagen().getBytes(1, (int) eficiencia.getImagen().length());
                 BufferedImage img = ImageIO.read(new ByteArrayInputStream(imagen));
                 Object[] fila = new Object[1];
                 ImageIcon icono = new ImageIcon(img);
                 fila[0] = new JLabel(icono);
                 vDatos = new Vector<>(Arrays.asList(model.getMarca().getNombre(),model.getNombre(),model.getConsumo(),model.getEmisiones(),model.getEficiencia().getNombre(), fila[0]));
                 dtm.addRow(vDatos);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
+            } catch (SQLException | IOException e) {
                 e.printStackTrace();
             }
         }
