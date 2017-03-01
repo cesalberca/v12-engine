@@ -1,7 +1,9 @@
 package controlador;
 
 import modelo.Exportador;
+import modelo.entidades.Modelo;
 import persistencia.GestorPersistencia;
+import persistencia.ModeloPersistencia;
 import vista.*;
 
 import javax.swing.table.DefaultTableModel;
@@ -9,6 +11,8 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Vector;
+
+import persistencia.ModeloPersistencia;
 
 /**
  * Controlador principal de la vista. Aquí se inicializan todos los action listeners.
@@ -18,7 +22,7 @@ public class AppControlador {
     private GestorPersistencia gestorPersistencia;
     private ActionListener abrirEficiencias, abrirModificar, abrirEliminar, abrirBuscar, exportar;
     private Vector<String> vResultados;
-    private Vector<String> datos;
+    private Vector vDatos;
     private DefaultTableModel dtm;
 
     public AppControlador(App app, GestorPersistencia gestorPersistencia) {
@@ -106,9 +110,14 @@ public class AppControlador {
 //    }
 
     private void iniciarTabla(){
+        ModeloPersistencia modelo = new ModeloPersistencia();
         vResultados = new Vector<>(Arrays.asList("Nombre marca", "Nombre modelo", "Consumo", "Emisiones", "Clasificación energética"));
-
-        dtm = new DefaultTableModel(vResultados,5);
+        dtm = new DefaultTableModel(vResultados,0);
+        for (Modelo model: modelo.getTodosModelos()
+             ) {
+            vDatos = new Vector<>(Arrays.asList(model.getMarca().getNombre(),model.getNombre(),model.getConsumo(),model.getEmisiones(),model.getEficiencia().getNombre()));
+            dtm.addRow(vDatos);
+        }
         app.getJtResultados().setModel(dtm);
     }
 }
