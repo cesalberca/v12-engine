@@ -1,6 +1,7 @@
 package persistencia;
 
 import modelo.entidades.Eficiencia;
+import observador.Sujeto;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import utils.HibernateUtil;
@@ -8,7 +9,7 @@ import utils.HibernateUtil;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
-public class EficienciaPersistencia implements EficienciaDao {
+public class EficienciaPersistencia implements EficienciaDao, Sujeto {
     @Override
     public List<Eficiencia> getTodasEficiencias() {
         Session sesion = HibernateUtil.getSessionFactory().openSession();
@@ -37,6 +38,7 @@ public class EficienciaPersistencia implements EficienciaDao {
         sesion.save(eficiencia);
         tx.commit();
         sesion.close();
+        notificarObservadores();
     }
 
     @Override
@@ -46,6 +48,7 @@ public class EficienciaPersistencia implements EficienciaDao {
         sesion.saveOrUpdate(eficiencia);
         tx.commit();
         sesion.close();
+        notificarObservadores();
     }
 
     @Override
@@ -55,5 +58,6 @@ public class EficienciaPersistencia implements EficienciaDao {
         sesion.delete(eficiencia);
         tx.commit();
         sesion.close();
+        notificarObservadores();
     }
 }

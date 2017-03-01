@@ -34,6 +34,8 @@ public class AppControlador implements Observador {
         this.app = app;
         this.gestorPersistencia = gestorPersistencia;
 
+        gestorPersistencia.registrarObservador(this);
+
         this.iniciarListeners();
         this.cargarTabla();
     }
@@ -125,7 +127,7 @@ public class AppControlador implements Observador {
         );
 
         dtm = new DefaultTableModel(vResultados,0);
-        for (Modelo model: gestorPersistencia.getModeloPersistencia().getTodosModelos()) {
+        for (Modelo model: gestorPersistencia.getModelos()) {
             try {
                 //aqui pasamos la foto
                 byte[] imagen = eficiencia.getImagen().getBytes(1, (int) eficiencia.getImagen().length());
@@ -144,7 +146,6 @@ public class AppControlador implements Observador {
 
     @Override
     public void actualizar() {
-        System.out.println("Se debe actualizar");
-//        cargarTabla();
+        cargarTabla();
     }
 }
