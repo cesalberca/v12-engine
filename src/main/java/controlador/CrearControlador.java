@@ -4,8 +4,10 @@ import modelo.entidades.Eficiencia;
 import modelo.entidades.Marca;
 import modelo.entidades.Modelo;
 import persistencia.GestorPersistencia;
+import utils.Validador;
 import vista.Crear;
 
+import javax.swing.*;
 import java.awt.event.ActionListener;
 import java.util.List;
 import java.util.Vector;
@@ -87,25 +89,48 @@ public class CrearControlador {
 
     private void crearEntrada() {
         // Comprobar si es una marca o si es un modelo
-        switch (itemSeleccionado) {
-            case "marca":
-                gestorPersistencia.getMarcaPersistencia().crearMarca(new Marca(crear.getTfNombre().getText()));
-                break;
-            case "modelo":
-                Marca marcaSeleccionada = marcas.get(crear.getCbMarcas().getSelectedIndex());
-                Eficiencia eficienciaSeleccionada = eficiencias.get(crear.getCbEficiencias().getSelectedIndex());
-                Modelo modelo = new Modelo(
-                    crear.getTfNombre().getText(),
-                    Integer.parseInt(crear.getTfConsumo().getText()),
-                    Integer.parseInt(crear.getTfEmisiones().getText())
-                );
+        if (itemSeleccionado.equals("marca")) {
+            crearMarca();
+        } else if (itemSeleccionado.equals("modelo")) {
+            crearModelo();
+        }
+    }
 
-                modelo.setMarca(marcaSeleccionada);
-                modelo.setEficiencia(eficienciaSeleccionada);
-                gestorPersistencia.getModeloPersistencia().crearModelo(modelo);
-                break;
+    private void crearMarca() {
+        if (Validador.validarCampo(crear.getTfNombre().getText())) {
+            gestorPersistencia.getMarcaPersistencia().crearMarca(new Marca(crear.getTfNombre().getText()));
+            crear.mostrarCreadoCorrectamente();
+            crear.cerrarDialogo();
+        } else {
+            JOptionPane.showMessageDialog(null, "Introduce un nombre válido");
+        }
+    }
+
+    private void crearModelo() {
+        Marca marcaSeleccionada = marcas.get(crear.getCbMarcas().getSelectedIndex());
+        Eficiencia eficienciaSeleccionada = eficiencias.get(crear.getCbEficiencias().getSelectedIndex());
+
+        // Validación
+        if (!Validador.validarCampo(crear.getTfNombre().getText())) {
+            JOptionPane.showMessageDialog(null, "Introduce un nombre válido");
+            return;
+        } else if (!Validador.validarCampo(crear.getTfConsumo().getText())) {
+            JOptionPane.showMessageDialog(null, "Introduce un consumo válido");
+            return;
+        } else if (!Validador.validarCampo(crear.getTfEmisiones().getText())) {
+            JOptionPane.showMessageDialog(null, "Introduce unas emisiones válidas");
+            return;
         }
 
+        Modelo modelo = new Modelo(
+            crear.getTfNombre().getText(),
+            Double.parseDouble(crear.getTfConsumo().getText()),
+            Double.parseDouble(crear.getTfEmisiones().getText())
+        );
+
+        modelo.setMarca(marcaSeleccionada);
+        modelo.setEficiencia(eficienciaSeleccionada);
+        gestorPersistencia.getModeloPersistencia().crearModelo(modelo);
         crear.mostrarCreadoCorrectamente();
         crear.cerrarDialogo();
     }
