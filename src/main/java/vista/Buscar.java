@@ -12,7 +12,6 @@ public class Buscar extends JDialog {
     private JCheckBox cbEmisiones;
     private JCheckBox cbConsumo;
     private JCheckBox cbMarca;
-    private JComboBox cbbConsumo;
     private JComboBox cbbEmisiones;
     private JComboBox cbbClasificacion;
     private JSlider sConsumo;
@@ -33,9 +32,9 @@ public class Buscar extends JDialog {
     }
     public void onConsumoSeleccionado(){
         if(cbConsumo.isSelected()){
-            cbbConsumo.setEnabled(true);
+            sConsumo.setEnabled(true);
         }else{
-            cbbConsumo.setEnabled(false);
+            sConsumo.setEnabled(false);
         }
     }
     public void onEmisionesSeleccionado(){
