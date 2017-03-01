@@ -24,7 +24,7 @@ public class Eliminar extends JDialog {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
-        tfNombre.setUI(new HintTextFieldUI("Nombre", true));
+
         tfConsumo.setUI(new HintTextFieldUI("Consumo", true));
         tfEmisiones.setUI(new HintTextFieldUI("Emisiones", true));
         tfEmisiones.setEnabled(false);

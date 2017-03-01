@@ -17,6 +17,7 @@ public class Modificar extends JDialog {
     private JTextField tfNombre;
     private JTextField tfEmisiones;
     private JTextField tfConsumo;
+    private JComboBox cbNombre;
 
     public Modificar() {
         setContentPane(contentPane);
@@ -30,6 +31,7 @@ public class Modificar extends JDialog {
         tfConsumo.setEnabled(false);
         cbMarcas.setEnabled(false);
         cbEficiencias.setEnabled(false);
+        cbNombre.setEnabled(false);
 
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
@@ -63,6 +65,10 @@ public class Modificar extends JDialog {
         return this.rbtnModelo;
     }
 
+    public JComboBox getcbNombre(){
+        return  this.cbNombre;
+    }
+
     public void mostrarModificadoCorrectamente() {
         System.out.println("Modificado correctamente");
     }
@@ -73,9 +79,11 @@ public class Modificar extends JDialog {
         tfConsumo.setEnabled(false);
         cbMarcas.setEnabled(false);
         cbEficiencias.setEnabled(false);
+        cbNombre.setEnabled(true);
     }
 
     public void onModeloSeleccionado(){
+        cbNombre.setEnabled(true);
         tfNombre.setEnabled(true);
         tfEmisiones.setEnabled(true);
         tfConsumo.setEnabled(true);
