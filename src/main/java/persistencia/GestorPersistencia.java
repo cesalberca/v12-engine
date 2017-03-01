@@ -12,7 +12,7 @@ public class GestorPersistencia {
         this.marcaPersistencia = new MarcaPersistencia();
         this.modeloPersistencia = new ModeloPersistencia();
 
-        // Forzamos a que se abrá la sessión
+        // Forzamos a que se abra la sesión
         HibernateUtil.getSessionFactory().openSession();
     }
 
