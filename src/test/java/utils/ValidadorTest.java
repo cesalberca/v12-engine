@@ -10,8 +10,18 @@ import static org.junit.jupiter.api.Assertions.*;
 @DisplayName("debe validar los contenidos de un campo")
 class ValidadorTest {
     @Test
+    @DisplayName("debe comprobar que es un número")
+    void esNumerico() {
+        assertTrue(Validador.esNumerico("1"));
+        assertTrue(Validador.esNumerico("1.0"));
+        assertTrue(Validador.esNumerico("-1"));
+        assertTrue(Validador.esNumerico("-1.2"));
+        assertFalse(Validador.esNumerico("a"));
+    }
+
+    @Test
     @DisplayName("debe comprobar que el campo es válido")
-    public void validarCampos() {
+    public void validarCampo() {
         boolean resultado1 = Validador.validarCampo("test");
         assertEquals(true, resultado1);
 
@@ -40,5 +50,13 @@ class ValidadorTest {
 
         boolean resultado4 = Validador.validarCampo("  test");
         assertEquals(false, resultado4);
+    }
+
+    @Test
+    @DisplayName("debe comprobar que es un valor numérico válido")
+    void validarCampoNumerico() {
+        assertTrue(Validador.validarCampoNumerico("1"));
+        assertTrue(Validador.validarCampoNumerico("1.0"));
+        assertFalse(Validador.validarCampoNumerico("a"));
     }
 }
