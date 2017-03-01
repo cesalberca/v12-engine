@@ -37,5 +37,8 @@ class ValidadorTest {
 
         boolean resultado3 = Validador.validarCampo("  test ");
         assertEquals(false, resultado3);
+
+        boolean resultado4 = Validador.validarCampo("  test");
+        assertEquals(false, resultado4);
     }
 }

@@ -2,7 +2,8 @@ package utils;
 
 public class Validador {
     /**
-     * Valida los campos del nombre. Un nombre no puede estar vacío
+     * Valida campos. Un campo no puede estar vacío, ni tener sólamente espacios,
+     * ni tener espacios ni al principio ni al final del mismo.
      * @param campo Campo a validar
      * @return Campo válido
      */
