@@ -49,6 +49,6 @@ public class Validador {
         if (str == null) {
             return false;
         }
-        return str.matches("-?\\d+");
+        return str.matches("-?\\d+(\\.\\d+)?");
     }
 }
