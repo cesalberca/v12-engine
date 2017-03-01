@@ -118,8 +118,6 @@ public class AppControlador {
         vResultados = new Vector<>(Arrays.asList("Nombre marca", "Nombre modelo", "Consumo", "Emisiones", "Clasificación energética", "Fotografía"));
         dtm = new DefaultTableModel(vResultados,0);
         for (Modelo model: modelo.getTodosModelos()) {
-
-
             try {
                 //aqui pasamos la foto
                 byte[] imagen = eficiencia.getImagen().getBytes(1, (int) eficiencia.getImagen().length()-1);
@@ -134,8 +132,6 @@ public class AppControlador {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
-
         }
         app.getJtResultados().setModel(dtm);
     }
