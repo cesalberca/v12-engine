@@ -1,14 +1,22 @@
 package controlador;
 
 import modelo.Exportador;
+import modelo.entidades.Eficiencia;
 import modelo.entidades.Modelo;
+import persistencia.EficienciaPersistencia;
 import persistencia.GestorPersistencia;
 import persistencia.ModeloPersistencia;
+import utils.AdaptadorTabla;
 import vista.*;
 
+import javax.imageio.ImageIO;
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.Vector;
 
@@ -111,12 +119,34 @@ public class AppControlador {
 
     private void iniciarTabla(){
         ModeloPersistencia modelo = new ModeloPersistencia();
-        vResultados = new Vector<>(Arrays.asList("Nombre marca", "Nombre modelo", "Consumo", "Emisiones", "Clasificación energética"));
+        EficienciaPersistencia eficienciaPersistencia = new EficienciaPersistencia();
+        Eficiencia eficiencia = eficienciaPersistencia.getEficiencia(1);
+
+        //adaptador de renderizar la jtable y poder meter un jlabel
+        app.getJtResultados().setDefaultRenderer(Object.class, new AdaptadorTabla()); //aqui se renderiza
+        //altura de los registros
+        app.getJtResultados().setRowHeight(50);
+        vResultados = new Vector<>(Arrays.asList("Nombre marca", "Nombre modelo", "Consumo", "Emisiones", "Clasificación energética", "Fotografía"));
         dtm = new DefaultTableModel(vResultados,0);
-        for (Modelo model: modelo.getTodosModelos()
-             ) {
-            vDatos = new Vector<>(Arrays.asList(model.getMarca().getNombre(),model.getNombre(),model.getConsumo(),model.getEmisiones(),model.getEficiencia().getNombre()));
-            dtm.addRow(vDatos);
+        for (Modelo model: modelo.getTodosModelos()) {
+
+
+            try {
+                //aqui pasamos la foto
+                byte[] imagen = eficiencia.getImagen().getBytes(1, (int) eficiencia.getImagen().length()-1);
+                BufferedImage img = ImageIO.read(new ByteArrayInputStream(imagen));
+                Object[] fila = new Object[1];
+                ImageIcon icono = new ImageIcon(img);
+                fila[0] = new JLabel(icono);
+                vDatos = new Vector<>(Arrays.asList(model.getMarca().getNombre(),model.getNombre(),model.getConsumo(),model.getEmisiones(),model.getEficiencia().getNombre(), fila[0]));
+                dtm.addRow(vDatos);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+
         }
         app.getJtResultados().setModel(dtm);
     }

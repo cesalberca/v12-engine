@@ -16,8 +16,8 @@ public class Eficiencia implements Serializable {
     @Column(name = "nombre")
     private String nombre;
 
-    @Column(name = "imagen")
     @Lob
+    @Column(name = "imagen")
     private Blob imagen;
 
     @OneToMany(mappedBy = "eficiencia", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
