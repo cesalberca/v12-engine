@@ -18,6 +18,7 @@ public class Eliminar extends JDialog {
     private JTextField tfConsumo;
     private JTextField tfEficiencia;
     private JTextField tfMarca;
+    private JComboBox cbNombre;
 
     public Eliminar() {
         setContentPane(contentPane);
@@ -26,7 +27,6 @@ public class Eliminar extends JDialog {
         tfNombre.setUI(new HintTextFieldUI("Nombre", true));
         tfConsumo.setUI(new HintTextFieldUI("Consumo", true));
         tfEmisiones.setUI(new HintTextFieldUI("Emisiones", true));
-        tfNombre.setEnabled(false);
         tfEmisiones.setEnabled(false);
         tfConsumo.setEnabled(false);
         tfMarca.setEnabled(false);
@@ -37,11 +37,11 @@ public class Eliminar extends JDialog {
     }
 
     public void onMarcaSeleccionado(){
-        tfNombre.setEnabled(true);
+        cbNombre.setEnabled(true);
     }
 
     public void onModeloSeleccionado(){
-        tfNombre.setEnabled(true);
+        cbNombre.setEnabled(true);
     }
 
     public void cerrarDialogo() {
@@ -62,6 +62,9 @@ public class Eliminar extends JDialog {
 
     public JRadioButton getRbtnModelo(){
         return this.rbtnModelo;
+    }
+    public JComboBox getCbNombre(){
+        return this.cbNombre;
     }
 
     public void mostrarEliminadoCorrectamente() {
