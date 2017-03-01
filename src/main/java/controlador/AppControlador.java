@@ -20,8 +20,6 @@ import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.Vector;
 
-import persistencia.ModeloPersistencia;
-
 /**
  * Controlador principal de la vista. Aquí se inicializan todos los action listeners.
  */
@@ -38,11 +36,12 @@ public class AppControlador {
         this.gestorPersistencia = gestorPersistencia;
 
         this.iniciarListeners();
-        this.iniciarTabla();
+        this.cargarTabla();
     }
 
     /**
-     * Inicializamos los listeners de la vista. Para ello recogemos de la vista los jbuttons. Generamos el controlador desde aquí y le pasamos el gestor de persistencia.
+     * Inicializamos los listeners de la vista. Para ello recogemos de la vista los jbuttons.
+     * Generamos el controlador desde aquí y le pasamos el gestor de persistencia.
      */
     private void iniciarListeners() {
         abrirEficiencias = actionEvent -> {
@@ -107,17 +106,7 @@ public class AppControlador {
         app.getExportarButton().addActionListener(exportar);
     }
 
-//    Eficiencia eficiencia = this.eficienciaPersistencia.getEficiencia(1);
-//        try {
-//        byte[] imagen = eficiencia.getImagen().getBytes(1,(int) eficiencia.getImagen().length());
-//        for (int i = 0; i < imagen.length; i++) {
-//            System.out.println(imagen[i]);
-//        }
-//    } catch (SQLException e) {
-//        e.printStackTrace();
-//    }
-
-    private void iniciarTabla(){
+    private void cargarTabla(){
         ModeloPersistencia modelo = new ModeloPersistencia();
         EficienciaPersistencia eficienciaPersistencia = new EficienciaPersistencia();
         Eficiencia eficiencia = eficienciaPersistencia.getEficiencia(1);
