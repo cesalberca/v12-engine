@@ -3,9 +3,8 @@ package controlador;
 import modelo.Exportador;
 import modelo.entidades.Eficiencia;
 import modelo.entidades.Modelo;
-import persistencia.EficienciaPersistencia;
+import observador.Observador;
 import persistencia.GestorPersistencia;
-import persistencia.ModeloPersistencia;
 import utils.AdaptadorTabla;
 import vista.*;
 
@@ -23,7 +22,7 @@ import java.util.Vector;
 /**
  * Controlador principal de la vista. Aquí se inicializan todos los action listeners.
  */
-public class AppControlador {
+public class AppControlador implements Observador {
     private App app;
     private GestorPersistencia gestorPersistencia;
     private ActionListener abrirEficiencias, abrirModificar, abrirEliminar, abrirBuscar, exportar;
@@ -107,9 +106,7 @@ public class AppControlador {
     }
 
     private void cargarTabla(){
-        ModeloPersistencia modelo = new ModeloPersistencia();
-        EficienciaPersistencia eficienciaPersistencia = new EficienciaPersistencia();
-        Eficiencia eficiencia = eficienciaPersistencia.getEficiencia(1);
+        Eficiencia eficiencia = gestorPersistencia.getEficienciaPersistencia().getEficiencia(1);
 
         //adaptador de renderizar la jtable y poder meter un jlabel
         //aqui se renderiza
@@ -128,7 +125,7 @@ public class AppControlador {
         );
 
         dtm = new DefaultTableModel(vResultados,0);
-        for (Modelo model: modelo.getTodosModelos()) {
+        for (Modelo model: gestorPersistencia.getModeloPersistencia().getTodosModelos()) {
             try {
                 //aqui pasamos la foto
                 byte[] imagen = eficiencia.getImagen().getBytes(1, (int) eficiencia.getImagen().length());
@@ -143,5 +140,11 @@ public class AppControlador {
             }
         }
         app.getJtResultados().setModel(dtm);
+    }
+
+    @Override
+    public void actualizar() {
+        System.out.println("Se debe actualizar");
+//        cargarTabla();
     }
 }
