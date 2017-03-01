@@ -139,7 +139,7 @@ public class AppControlador {
                 vDatos = new Vector<>(Arrays.asList(model.getMarca().getNombre(),model.getNombre(),model.getConsumo(),model.getEmisiones(),model.getEficiencia().getNombre(), fila[0]));
                 dtm.addRow(vDatos);
             } catch (SQLException | IOException e) {
-                e.printStackTrace();
+                app.notificarErrorCargaDeDatos();
             }
         }
         app.getJtResultados().setModel(dtm);

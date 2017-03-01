@@ -79,4 +79,8 @@ public class App {
     public JTable getJtResultados(){
         return jtResultados;
     }
+
+    public void notificarErrorCargaDeDatos() {
+        JOptionPane.showMessageDialog(null, "Error al cargar los datos");
+    }
 }
