@@ -16,10 +16,10 @@ public class Modelo implements Serializable {
     private String nombre;
 
     @Column(name = "consumo")
-    private int consumo;
+    private double consumo;
 
     @Column(name = "emisiones")
-    private int emisiones;
+    private double emisiones;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "id_marca", referencedColumnName = "id", nullable = false)
@@ -32,13 +32,13 @@ public class Modelo implements Serializable {
     public Modelo() {
     }
 
-    public Modelo(String nombre, int consumo, int emisiones) {
+    public Modelo(String nombre, double consumo, double emisiones) {
         this.nombre = nombre;
         this.consumo = consumo;
         this.emisiones = emisiones;
     }
 
-    public Modelo(String nombre, int consumo, int emisiones, Marca marca, Eficiencia eficiencia) {
+    public Modelo(String nombre, double consumo, double emisiones, Marca marca, Eficiencia eficiencia) {
         this.nombre = nombre;
         this.consumo = consumo;
         this.emisiones = emisiones;
@@ -58,19 +58,19 @@ public class Modelo implements Serializable {
         this.nombre = nombre;
     }
 
-    public int getConsumo() {
+    public double getConsumo() {
         return consumo;
     }
 
-    public void setConsumo(int consumo) {
+    public void setConsumo(double consumo) {
         this.consumo = consumo;
     }
 
-    public int getEmisiones() {
+    public double getEmisiones() {
         return emisiones;
     }
 
-    public void setEmisiones(int emisiones) {
+    public void setEmisiones(double emisiones) {
         this.emisiones = emisiones;
     }
 
@@ -98,8 +98,8 @@ public class Modelo implements Serializable {
         Modelo modelo = (Modelo) o;
 
         if (id != modelo.id) return false;
-        if (consumo != modelo.consumo) return false;
-        if (emisiones != modelo.emisiones) return false;
+        if (Double.compare(modelo.consumo, consumo) != 0) return false;
+        if (Double.compare(modelo.emisiones, emisiones) != 0) return false;
         if (nombre != null ? !nombre.equals(modelo.nombre) : modelo.nombre != null) return false;
         if (marca != null ? !marca.equals(modelo.marca) : modelo.marca != null) return false;
         return eficiencia != null ? eficiencia.equals(modelo.eficiencia) : modelo.eficiencia == null;
@@ -107,10 +107,14 @@ public class Modelo implements Serializable {
 
     @Override
     public int hashCode() {
-        int result = id;
+        int result;
+        long temp;
+        result = id;
         result = 31 * result + (nombre != null ? nombre.hashCode() : 0);
-        result = 31 * result + consumo;
-        result = 31 * result + emisiones;
+        temp = Double.doubleToLongBits(consumo);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(emisiones);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
         result = 31 * result + (marca != null ? marca.hashCode() : 0);
         result = 31 * result + (eficiencia != null ? eficiencia.hashCode() : 0);
         return result;
