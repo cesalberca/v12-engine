@@ -56,4 +56,14 @@ public class MarcaPersistencia implements MarcaDao {
         tx.commit();
         sesion.close();
     }
+
+    /*
+    @Override
+    public int idMarca(String nombre){
+        Session sesion = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = sesion.beginTransaction();
+        int id = 0
+        return id;
+
+    }*/
 }

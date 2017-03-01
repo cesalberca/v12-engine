@@ -4,6 +4,7 @@ import utils.HintTextFieldUI;
 
 import javax.swing.*;
 import java.awt.event.*;
+import java.util.Vector;
 
 public class Eliminar extends JDialog {
     private JPanel contentPane;
@@ -69,5 +70,15 @@ public class Eliminar extends JDialog {
 
     public void mostrarEliminadoCorrectamente() {
         System.out.println("Eliminado correctamente");
+    }
+
+    public void addModeloMarcas(Vector marcas){
+        final DefaultComboBoxModel marcasModel = new DefaultComboBoxModel(marcas);
+        cbNombre.setModel(marcasModel);
+    }
+
+    public void addModelModelo(Vector modelos){
+        final DefaultComboBoxModel modeloModel = new DefaultComboBoxModel(modelos);
+        cbNombre.setModel(modeloModel);
     }
 }
