@@ -1,5 +1,7 @@
 package persistencia;
 
+import utils.HibernateUtil;
+
 public class GestorPersistencia {
     private EficienciaPersistencia eficienciaPersistencia;
     private MarcaPersistencia marcaPersistencia;
@@ -9,6 +11,9 @@ public class GestorPersistencia {
         this.eficienciaPersistencia = new EficienciaPersistencia();
         this.marcaPersistencia = new MarcaPersistencia();
         this.modeloPersistencia = new ModeloPersistencia();
+
+        // Forzamos a que se abrá la sessión
+        HibernateUtil.getSessionFactory().openSession();
     }
 
     public EficienciaPersistencia getEficienciaPersistencia() {
