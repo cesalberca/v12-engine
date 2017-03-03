@@ -107,3 +107,5 @@ En este paquete existirá las utilidades generales. Por regla general son métod
 * Broadcast receiver
 * Almacenamiento
 * AsyncTask, services e intent services (Preguntar cómo se hace un asynctask)
+* Dada una aplicación qué usarías
+* Cualquier cosas que hayas hecho en la práctica
