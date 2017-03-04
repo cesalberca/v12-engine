@@ -1,12 +1,9 @@
 package controlador;
 
-import modelo.entidades.Marca;
 import modelo.entidades.Modelo;
 import persistencia.GestorPersistencia;
 import vista.Buscar;
 
-import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
