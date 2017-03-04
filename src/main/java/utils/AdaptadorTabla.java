@@ -5,7 +5,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import java.awt.*;
 
 public class AdaptadorTabla extends DefaultTableCellRenderer {
-    // para adaptar el jtable y aparezca la imagen pero sobre un jlabel.
+    // Para adaptar el jtable y aparezca la imagen pero sobre un jlabel.
     @Override
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
 
@@ -14,7 +14,6 @@ public class AdaptadorTabla extends DefaultTableCellRenderer {
             return lbl;
         }
 
-        return super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column); //To change body of generated methods, choose Tools | Templates.
+        return super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
     }
-
 }
