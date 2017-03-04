@@ -44,8 +44,7 @@ public class MarcaPersistencia extends Observable implements MarcaDao {
         sesion.save(marca);
         tx.commit();
         sesion.close();
-        setChanged();
-        notifyObservers();
+        this.setMarcas(getTodasMarcas());
     }
 
     @Override
@@ -55,8 +54,7 @@ public class MarcaPersistencia extends Observable implements MarcaDao {
         sesion.saveOrUpdate(marca);
         tx.commit();
         sesion.close();
-        setChanged();
-        notifyObservers();
+        this.setMarcas(getTodasMarcas());
     }
 
     @Override
@@ -66,8 +64,7 @@ public class MarcaPersistencia extends Observable implements MarcaDao {
         sesion.delete(marca);
         tx.commit();
         sesion.close();
-        setChanged();
-        notifyObservers();
+        this.setMarcas(getTodasMarcas());
     }
 
     public List<Marca> getMarcas() {
