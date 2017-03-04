@@ -5,7 +5,10 @@ import modelo.entidades.Marca;
 import modelo.entidades.Modelo;
 import persistencia.GestorPersistencia;
 
+import utils.Validador;
 import vista.Modificar;
+
+import javax.swing.*;
 import java.awt.event.ActionListener;
 import java.util.List;
 import java.util.Vector;
@@ -77,24 +80,56 @@ public class ModificarControlador {
     private void actualizarEntrada() {
         switch (elementoSeleccionado) {
             case "marca":
-                Marca marcaSeleccionada = marcas.get(modificar.getcbNombre().getSelectedIndex());
-                marcaSeleccionada.setNombre(modificar.getTfNombre().getText());
-                gestorPersistencia.getMarcaPersistencia().actualizarMarca(marcaSeleccionada);
+                actualizarMarca();
                 break;
             case "modelo":
-                Modelo modeloSeleccionado = modelos.get(modificar.getcbNombre().getSelectedIndex());
-                modeloSeleccionado.setNombre(modificar.getTfNombre().getText());
-                modeloSeleccionado.setConsumo(Double.parseDouble(modificar.getTfConsumo().getText()));
-                modeloSeleccionado.setEmisiones(Double.parseDouble(modificar.getTfEmisiones().getText()));
-                gestorPersistencia.getModeloPersistencia().actualizarModelo(modeloSeleccionado);
+                actualizarModelo();
                 break;
         }
+    }
+
+    private void actualizarModelo() {
+        Modelo modeloSeleccionado = modelos.get(modificar.getcbNombre().getSelectedIndex());
+
+        // Validación
+        // TODO Refactor de ésto. Lo suyo sería hacer una utilidad de mensajes de error
+        if (!Validador.validarCampo(modificar.getTfNombre().getText())) {
+            JOptionPane.showMessageDialog(null, "Introduce un nombre válido");
+            return;
+        } else if (!Validador.validarCampoNumerico(modificar.getTfConsumo().getText())) {
+            JOptionPane.showMessageDialog(null, "Introduce un consumo válido");
+            return;
+        } else if (!Validador.validarCampoNumerico(modificar.getTfEmisiones().getText())) {
+            JOptionPane.showMessageDialog(null, "Introduce unas emisiones válidas");
+            return;
+        }
+
+        modeloSeleccionado.setNombre(modificar.getTfNombre().getText());
+        modeloSeleccionado.setConsumo(Double.parseDouble(modificar.getTfConsumo().getText()));
+        modeloSeleccionado.setEmisiones(Double.parseDouble(modificar.getTfEmisiones().getText()));
+        modeloSeleccionado.setEficiencia(eficiencias.get(modificar.getCbEficiencias().getSelectedIndex()));
+        modeloSeleccionado.setMarca(marcas.get(modificar.getCbMarcas().getSelectedIndex()));
+        gestorPersistencia.getModeloPersistencia().actualizarModelo(modeloSeleccionado);
+        modificar.cerrarDialogo();
+    }
+
+    private void actualizarMarca() {
+        Marca marcaSeleccionada = marcas.get(modificar.getcbNombre().getSelectedIndex());
+
+        // Validación
+        if (!Validador.validarCampo(modificar.getTfNombre().getText())) {
+            JOptionPane.showMessageDialog(null, "Introduce un nombre válido");
+            return;
+        }
+
+        marcaSeleccionada.setNombre(modificar.getTfNombre().getText());
+        gestorPersistencia.getMarcaPersistencia().actualizarMarca(marcaSeleccionada);
+        modificar.cerrarDialogo();
     }
 
     private void iniciarListeners() {
         modificarElementoListener = actionEvent -> {
             actualizarEntrada();
-            modificar.cerrarDialogo();
         };
         modificar.getButtonOK().addActionListener(modificarElementoListener);
 
