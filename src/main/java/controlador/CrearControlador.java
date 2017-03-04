@@ -60,7 +60,6 @@ public class CrearControlador {
                 this.crearEntrada();
             } catch (Exception e) {
                 crear.mostrarError();
-                System.out.println(e);
             }
         };
 
