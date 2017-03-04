@@ -1,23 +1,33 @@
 package controlador;
 
+import modelo.entidades.Eficiencia;
+import modelo.entidades.Marca;
 import modelo.entidades.Modelo;
 import persistencia.GestorPersistencia;
 import vista.Buscar;
 
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
 
 public class BuscarControlador {
     private Buscar buscar;
     private GestorPersistencia gestorPersistencia;
     private ActionListener buscarListener, marcaSeleccionadaListener, consumoSeleccionadoListener, emisionSeleccionadoListener, clasificacionSeleccionadoListener, cerrarListener;
-    private ArrayList<Modelo> almodelos;
-    public BuscarControlador(Buscar buscar, GestorPersistencia gestorPersistencia, ArrayList<Modelo> modelos) {
+    private ChangeListener cambioSliderListener;
+    private List<Modelo> almodelos;
+    private boolean nueva;
+    public BuscarControlador(Buscar buscar, GestorPersistencia gestorPersistencia) {
         this.buscar = buscar;
         this.gestorPersistencia = gestorPersistencia;
-        this.almodelos = modelos;
+        this.almodelos = gestorPersistencia.getModeloPersistencia().getModelos();
 
         this.iniciarListener();
+        this.llenarDatos();
     }
 
     private void iniciarListener() {
@@ -42,6 +52,9 @@ public class BuscarControlador {
 
         cerrarListener = actionEvent -> buscar.cerrarDialogo();
         buscar.getButtonCancel().addActionListener(cerrarListener);
+
+        cambioSliderListener = e -> buscar.onCambioSlider();
+        buscar.getsConsumo().addChangeListener(cambioSliderListener);
     }
 
 
@@ -50,27 +63,30 @@ public class BuscarControlador {
     }
 
     private void llenarDatos(){
-        for (Modelo model: almodelos) {
-            for (int i = 0;i < buscar.getCbbMarca().getItemCount(); i++){
-                if(model.getMarca().getNombre() != buscar.getCbbMarca().getItemAt(i)){
-                   buscar.getCbbMarca().addItem(model.getMarca().getNombre());
+        gestorPersistencia.getMarcaPersistencia().getMarcas()
+            .forEach(i ->buscar.getCbbMarca().addItem(i.getNombre()));
+
+        gestorPersistencia.getEficienciaPersistencia().getEficiencias()
+            .forEach(i -> buscar.getCbbClasificacion().addItem(i.getNombre()));
+
+        gestorPersistencia.getModeloPersistencia().getModelos()
+            .forEach(i -> {
+                nueva = true;
+                for (int j = 1; j < buscar.getCbbEmisiones().getItemCount(); j++) {
+                    if(Double.parseDouble(buscar.getCbbEmisiones().getItemAt(j).toString()) == i.getEmisiones()){
+                        nueva = false;
+                    }
                 }
-            }
-            for (int i = 0;i < buscar.getCbbClasificacion().getItemCount(); i++){
-                if(model.getEficiencia().getNombre() != buscar.getCbbClasificacion().getItemAt(i)){
-                    buscar.getCbbClasificacion().addItem(model.getEficiencia().getNombre());
+                if(nueva){
+                    buscar.getCbbEmisiones().addItem(String.valueOf(i.getEmisiones()));
                 }
-            }
-            for (int i = 0;i < buscar.getCbbEmisiones().getItemCount(); i++){
-                if(model.getEmisiones() != Double.parseDouble(buscar.getCbbEmisiones().getItemAt(i).toString())){
-                    buscar.getCbbEmisiones().addItem(model.getEmisiones());
+                if(i.getConsumo() > buscar.getsConsumo().getMaximum()){
+                    buscar.getsConsumo().setMaximum((int)i.getConsumo());
+                }else if(i.getConsumo()< buscar.getsConsumo().getMinimum()){
+                    buscar.getsConsumo().setMinimum((int) i.getConsumo());
                 }
-            }
-            if(model.getConsumo() > buscar.getsConsumo().getMaximum()){
-                buscar.getsConsumo().setMaximum((int)model.getConsumo());
-            }else if(model.getConsumo() < buscar.getsConsumo().getMinimum()){
-                buscar.getsConsumo().setMinimum((int) model.getConsumo());
-            }
-        }
+            });
+
+
     }
 }

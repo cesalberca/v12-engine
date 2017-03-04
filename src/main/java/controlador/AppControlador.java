@@ -72,7 +72,7 @@ public class AppControlador implements Observer {
 
         abrirBuscar = actionEvent -> {
             Buscar buscar = new Buscar();
-            new BuscarControlador(buscar, gestorPersistencia, new ArrayList<>());
+            new BuscarControlador(buscar, gestorPersistencia);
             buscar.setTitle("Buscar elemento");
             buscar.pack();
             buscar.setLocationRelativeTo(null);
