@@ -16,6 +16,7 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Vector;
 
@@ -69,7 +70,7 @@ public class AppControlador implements Observador {
 
         abrirBuscar = actionEvent -> {
             Buscar buscar = new Buscar();
-            new BuscarControlador(buscar, gestorPersistencia);
+            new BuscarControlador(buscar, gestorPersistencia, new ArrayList<Modelo>());
             buscar.setTitle("Buscar elemento");
             buscar.pack();
             buscar.setLocationRelativeTo(null);

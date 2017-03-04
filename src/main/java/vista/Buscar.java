@@ -81,4 +81,19 @@ public class Buscar extends JDialog {
         dispose();
     }
 
+    public JComboBox getCbbMarca() {
+        return cbbMarca;
+    }
+
+    public JComboBox getCbbEmisiones() {
+        return cbbEmisiones;
+    }
+
+    public JComboBox getCbbClasificacion() {
+        return cbbClasificacion;
+    }
+
+    public JSlider getsConsumo() {
+        return sConsumo;
+    }
 }

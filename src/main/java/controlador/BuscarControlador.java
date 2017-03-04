@@ -1,19 +1,24 @@
 package controlador;
 
+import modelo.entidades.Marca;
+import modelo.entidades.Modelo;
 import persistencia.GestorPersistencia;
 import vista.Buscar;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class BuscarControlador {
     private Buscar buscar;
     private GestorPersistencia gestorPersistencia;
     private ActionListener buscarListener, marcaSeleccionadaListener, consumoSeleccionadoListener, emisionSeleccionadoListener, clasificacionSeleccionadoListener, cerrarListener;
-
-    public BuscarControlador(Buscar buscar, GestorPersistencia gestorPersistencia) {
+    private ArrayList<Modelo> almodelos;
+    public BuscarControlador(Buscar buscar, GestorPersistencia gestorPersistencia, ArrayList<Modelo> modelos) {
         this.buscar = buscar;
         this.gestorPersistencia = gestorPersistencia;
+        this.almodelos = modelos;
 
         this.iniciarListener();
     }
@@ -40,5 +45,20 @@ public class BuscarControlador {
 
         cerrarListener = actionEvent -> buscar.cerrarDialogo();
         buscar.getButtonCancel().addActionListener(cerrarListener);
+    }
+
+
+    private void buscar(){
+
+    }
+
+    private void llenarDatos(){
+        for (Modelo model: almodelos) {
+            for (int i = 0;i < buscar.getCbbMarca().getItemCount(); i++){
+                if(model.getMarca().getNombre() != buscar.getCbbMarca().getItemAt(i)){
+                   /* buscar.getCbbMarca().addItem();*/
+                }
+            }
+        }
     }
 }
