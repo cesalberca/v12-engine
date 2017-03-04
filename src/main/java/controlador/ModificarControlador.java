@@ -2,6 +2,7 @@ package controlador;
 
 import modelo.entidades.Eficiencia;
 import modelo.entidades.Marca;
+import modelo.entidades.Modelo;
 import persistencia.GestorPersistencia;
 
 import vista.Modificar;
@@ -18,18 +19,41 @@ public class ModificarControlador {
     private ActionListener modificarElementoListener, marcaSeleccionadaListener, modeloSeleccionadoListener, cerrarListener;
     private List<Eficiencia> eficiencias;
     private List<Marca> marcas;
-
+    private List<Modelo> modelos;
+    private String elementoSeleccionado = "";
 
     public ModificarControlador(Modificar modificar, GestorPersistencia gestorPersistencia) {
         this.modificar = modificar;
         this.gestorPersistencia = gestorPersistencia;
-        this.cargarEficiencias();
+
         this.iniciarListeners();
-        this.cargarMarcas();
+    }
+
+    private void cargarElementosSeleccionados() {
+        Vector elementos = new Vector();
+
+        switch (elementoSeleccionado) {
+            case "marca":
+                marcas = gestorPersistencia.getMarcaPersistencia().getMarcas();
+
+                for (Marca marca : marcas) {
+                    elementos.add(marca.getNombre());
+                }
+                break;
+            case "modelo":
+                modelos = gestorPersistencia.getModeloPersistencia().getModelos();
+
+                for (Modelo modelo : modelos) {
+                    elementos.add(modelo.getNombre());
+                }
+                break;
+        }
+
+        modificar.addModeloElementoAModificar(elementos);
     }
 
     private void cargarEficiencias() {
-        eficiencias = gestorPersistencia.getEficienciaPersistencia().getTodasEficiencias();
+        eficiencias = gestorPersistencia.getEficienciaPersistencia().getEficiencias();
         Vector vEficiencias = new Vector();
 
         for (Eficiencia eficiencia : eficiencias) {
@@ -40,7 +64,7 @@ public class ModificarControlador {
     }
 
     private void cargarMarcas() {
-        marcas = gestorPersistencia.getMarcaPersistencia().getTodasMarcas();
+        marcas = gestorPersistencia.getMarcaPersistencia().getMarcas();
         Vector vMarcas = new Vector();
 
         for (Marca marca : marcas) {
@@ -50,7 +74,6 @@ public class ModificarControlador {
         modificar.addModeloMarcas(vMarcas);
     }
 
-
     private void iniciarListeners() {
         modificarElementoListener = actionEvent -> modificar.cerrarDialogo();
         modificar.getButtonOK().addActionListener(modificarElementoListener);
@@ -58,10 +81,21 @@ public class ModificarControlador {
         cerrarListener = actionEvent -> modificar.cerrarDialogo();
         modificar.getButtonCancel().addActionListener(cerrarListener);
 
-        marcaSeleccionadaListener = actionEvent -> modificar.onMarcaSeleccionado();
+        marcaSeleccionadaListener = actionEvent -> {
+            elementoSeleccionado = "marca";
+            modificar.onMarcaSeleccionado();
+            this.cargarMarcas();
+            this.cargarElementosSeleccionados();
+        };
         modificar.getRbtnMarca().addActionListener(marcaSeleccionadaListener);
 
-        modeloSeleccionadoListener = actionEvent -> modificar.onModeloSeleccionado();
+        modeloSeleccionadoListener = actionEvent -> {
+            elementoSeleccionado = "modelo";
+            modificar.onModeloSeleccionado();
+            this.cargarEficiencias();
+            this.cargarMarcas();
+            this.cargarElementosSeleccionados();
+        };
         modificar.getRbtnModelo().addActionListener(modeloSeleccionadoListener);
     }
 }

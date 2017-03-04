@@ -45,6 +45,12 @@ public class Modificar extends JDialog {
         final DefaultComboBoxModel marcasModel = new DefaultComboBoxModel(marcas);
         cbMarcas.setModel(marcasModel);
     }
+
+    public void addModeloElementoAModificar(Vector elementos) {
+        final DefaultComboBoxModel modeloElementoAModificar = new DefaultComboBoxModel(elementos);
+        cbNombre.setModel(modeloElementoAModificar);
+    }
+
     public void cerrarDialogo() {
         dispose();
     }
