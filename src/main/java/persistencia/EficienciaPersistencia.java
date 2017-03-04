@@ -1,15 +1,21 @@
 package persistencia;
 
 import modelo.entidades.Eficiencia;
-import observador.Sujeto;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import utils.HibernateUtil;
 
 import javax.persistence.TypedQuery;
 import java.util.List;
+import java.util.Observable;
 
-public class EficienciaPersistencia implements EficienciaDao, Sujeto {
+public class EficienciaPersistencia extends Observable implements EficienciaDao {
+    private List<Eficiencia> eficiencias;
+
+    public EficienciaPersistencia() {
+        this.setEficiencias(getTodasEficiencias());
+    }
+
     @Override
     public List<Eficiencia> getTodasEficiencias() {
         Session sesion = HibernateUtil.getSessionFactory().openSession();
@@ -38,7 +44,7 @@ public class EficienciaPersistencia implements EficienciaDao, Sujeto {
         sesion.save(eficiencia);
         tx.commit();
         sesion.close();
-        notificarObservadores();
+        this.setEficiencias(getTodasEficiencias());
     }
 
     @Override
@@ -48,7 +54,7 @@ public class EficienciaPersistencia implements EficienciaDao, Sujeto {
         sesion.saveOrUpdate(eficiencia);
         tx.commit();
         sesion.close();
-        notificarObservadores();
+        this.setEficiencias(getTodasEficiencias());
     }
 
     @Override
@@ -58,6 +64,16 @@ public class EficienciaPersistencia implements EficienciaDao, Sujeto {
         sesion.delete(eficiencia);
         tx.commit();
         sesion.close();
-        notificarObservadores();
+        this.setEficiencias(getTodasEficiencias());
+    }
+
+    public List<Eficiencia> getEficiencias() {
+        return eficiencias;
+    }
+
+    public void setEficiencias(List<Eficiencia> eficiencias) {
+        this.eficiencias = eficiencias;
+        setChanged();
+        notifyObservers();
     }
 }

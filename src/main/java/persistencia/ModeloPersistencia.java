@@ -1,16 +1,21 @@
 package persistencia;
 
-
 import modelo.entidades.Modelo;
-import observador.Sujeto;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import utils.HibernateUtil;
 
 import javax.persistence.TypedQuery;
 import java.util.List;
+import java.util.Observable;
 
-public class ModeloPersistencia implements ModeloDao, Sujeto {
+public class ModeloPersistencia extends Observable implements ModeloDao {
+    private List<Modelo> modelos;
+
+    public ModeloPersistencia() {
+        this.setModelos(getTodosModelos());
+    }
+
     @Override
     public List<Modelo> getTodosModelos() {
         Session sesion = HibernateUtil.getSessionFactory().openSession();
@@ -39,7 +44,7 @@ public class ModeloPersistencia implements ModeloDao, Sujeto {
         sesion.save(modelo);
         tx.commit();
         sesion.close();
-        notificarObservadores();
+        this.setModelos(getTodosModelos());
     }
 
     @Override
@@ -49,7 +54,7 @@ public class ModeloPersistencia implements ModeloDao, Sujeto {
         sesion.saveOrUpdate(modelo);
         tx.commit();
         sesion.close();
-        notificarObservadores();
+        this.setModelos(getTodosModelos());
     }
 
     @Override
@@ -59,6 +64,16 @@ public class ModeloPersistencia implements ModeloDao, Sujeto {
         sesion.delete(modelo);
         tx.commit();
         sesion.close();
-        notificarObservadores();
+        this.setModelos(getTodosModelos());
+    }
+
+    public List<Modelo> getModelos() {
+        return modelos;
+    }
+
+    public void setModelos(List<Modelo> modelos) {
+        this.modelos = modelos;
+        setChanged();
+        notifyObservers();
     }
 }

@@ -3,7 +3,6 @@ package controlador;
 import modelo.Exportador;
 import modelo.entidades.Eficiencia;
 import modelo.entidades.Modelo;
-import observador.Observador;
 import persistencia.GestorPersistencia;
 import utils.AdaptadorTabla;
 import vista.*;
@@ -18,12 +17,14 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.Vector;
 
 /**
  * Controlador principal de la vista. Aquí se inicializan todos los action listeners.
  */
-public class AppControlador implements Observador {
+public class AppControlador implements Observer {
     private App app;
     private GestorPersistencia gestorPersistencia;
     private ActionListener abrirEficiencias, abrirModificar, abrirEliminar, abrirBuscar, exportar;
@@ -35,7 +36,7 @@ public class AppControlador implements Observador {
         this.app = app;
         this.gestorPersistencia = gestorPersistencia;
 
-        gestorPersistencia.registrarObservador(this);
+        gestorPersistencia.getModeloPersistencia().addObserver(this);
 
         this.iniciarListeners();
         this.cargarTabla();
@@ -127,7 +128,7 @@ public class AppControlador implements Observador {
         );
 
         dtm = new DefaultTableModel(vResultados,0);
-        for (Modelo model: gestorPersistencia.getModelos()) {
+        for (Modelo model: gestorPersistencia.getModeloPersistencia().getModelos()) {
             try {
                 eficiencia = gestorPersistencia.getEficienciaPersistencia().getEficiencia(model.getEficiencia().getId());
                 //aqui pasamos la foto
@@ -146,7 +147,7 @@ public class AppControlador implements Observador {
     }
 
     @Override
-    public void actualizar() {
+    public void update(Observable o, Object arg) {
         cargarTabla();
     }
 }

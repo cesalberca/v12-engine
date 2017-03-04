@@ -1,15 +1,21 @@
 package persistencia;
 
 import modelo.entidades.Marca;
-import observador.Sujeto;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import utils.HibernateUtil;
 
 import javax.persistence.TypedQuery;
 import java.util.List;
+import java.util.Observable;
 
-public class MarcaPersistencia implements MarcaDao, Sujeto {
+public class MarcaPersistencia extends Observable implements MarcaDao {
+    private List<Marca> marcas;
+
+    public MarcaPersistencia() {
+        this.setMarcas(getTodasMarcas());
+    }
+
     @Override
     public List<Marca> getTodasMarcas() {
         Session sesion = HibernateUtil.getSessionFactory().openSession();
@@ -38,7 +44,8 @@ public class MarcaPersistencia implements MarcaDao, Sujeto {
         sesion.save(marca);
         tx.commit();
         sesion.close();
-        notificarObservadores();
+        setChanged();
+        notifyObservers();
     }
 
     @Override
@@ -48,7 +55,8 @@ public class MarcaPersistencia implements MarcaDao, Sujeto {
         sesion.saveOrUpdate(marca);
         tx.commit();
         sesion.close();
-        notificarObservadores();
+        setChanged();
+        notifyObservers();
     }
 
     @Override
@@ -58,16 +66,17 @@ public class MarcaPersistencia implements MarcaDao, Sujeto {
         sesion.delete(marca);
         tx.commit();
         sesion.close();
-        notificarObservadores();
+        setChanged();
+        notifyObservers();
     }
 
-    /*
-    @Override
-    public int idMarca(String nombre){
-        Session sesion = HibernateUtil.getSessionFactory().openSession();
-        Transaction tx = sesion.beginTransaction();
-        int id = 0
-        return id;
+    public List<Marca> getMarcas() {
+        return marcas;
+    }
 
-    }*/
+    public void setMarcas(List<Marca> marcas) {
+        this.marcas = marcas;
+        setChanged();
+        notifyObservers();
+    }
 }
