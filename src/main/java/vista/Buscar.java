@@ -16,6 +16,7 @@ public class Buscar extends JDialog {
     private JComboBox cbbClasificacion;
     private JSlider sConsumo;
     private JLabel jlValorSeleccionado;
+    private JTextArea taResultados;
 
     public Buscar() {
         setContentPane(contentPane);
@@ -78,6 +79,10 @@ public class Buscar extends JDialog {
         return cbMarca;
     }
 
+    public JTextArea getTaResultados() {
+        return taResultados;
+    }
+
     public void cerrarDialogo() {
         dispose();
     }
@@ -96,10 +101,6 @@ public class Buscar extends JDialog {
 
     public JSlider getsConsumo() {
         return sConsumo;
-    }
-
-    public JLabel getJlValorSeleccionado() {
-        return jlValorSeleccionado;
     }
 
     public void onCambioSlider() {

@@ -1,5 +1,6 @@
 package controlador;
 
+import com.sun.xml.internal.bind.v2.TODO;
 import modelo.Exportador;
 import modelo.entidades.Eficiencia;
 import modelo.entidades.Modelo;
@@ -129,8 +130,7 @@ public class AppControlador implements Observer {
         );
 
         dtm = new DefaultTableModel(vResultados,0);
-        // TODO Revisar si se debe cargar de la base de datos los datos sí o sí
-        for (Modelo model: gestorPersistencia.getModeloPersistencia().getTodosModelos()) {
+        for (Modelo model: gestorPersistencia.getModeloPersistencia().getModelos()) {
             try {
                 // Cogemos la eficiencia del modelo
                 eficiencia = model.getEficiencia();
@@ -144,8 +144,8 @@ public class AppControlador implements Observer {
                 vDatos = new Vector<>(Arrays.asList(
                     model.getMarca().getNombre(),
                     model.getNombre(),
-                    model.getConsumo(),
-                    model.getEmisiones(),
+                    model.getConsumo() + " litros/100km",
+                    model.getEmisiones() + " gCO2",
                     model.getEficiencia().getNombre(),
                     fila[0])
                 );
@@ -156,6 +156,7 @@ public class AppControlador implements Observer {
             }
         }
         app.getJtResultados().setModel(dtm);
+        app.getJtResultados().setEnabled(false);
     }
 
     @Override
