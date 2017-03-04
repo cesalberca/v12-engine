@@ -129,7 +129,8 @@ public class AppControlador implements Observer {
         );
 
         dtm = new DefaultTableModel(vResultados,0);
-        for (Modelo model: gestorPersistencia.getModeloPersistencia().getModelos()) {
+        // TODO Revisar si se debe cargar de la base de datos los datos sí o sí
+        for (Modelo model: gestorPersistencia.getModeloPersistencia().getTodosModelos()) {
             try {
                 // Cogemos la eficiencia del modelo
                 eficiencia = model.getEficiencia();
