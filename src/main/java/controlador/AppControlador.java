@@ -108,8 +108,7 @@ public class AppControlador implements Observador {
     }
 
     private void cargarTabla(){
-        Eficiencia eficiencia = gestorPersistencia.getEficienciaPersistencia().getEficiencia(1);
-
+        Eficiencia eficiencia;
         //adaptador de renderizar la jtable y poder meter un jlabel
         //aqui se renderiza
         app.getJtResultados().setDefaultRenderer(Object.class, new AdaptadorTabla());
@@ -129,6 +128,7 @@ public class AppControlador implements Observador {
         dtm = new DefaultTableModel(vResultados,0);
         for (Modelo model: gestorPersistencia.getModelos()) {
             try {
+                eficiencia = gestorPersistencia.getEficienciaPersistencia().getEficiencia(model.getEficiencia().getId());
                 //aqui pasamos la foto
                 byte[] imagen = eficiencia.getImagen().getBytes(1, (int) eficiencia.getImagen().length());
                 BufferedImage img = ImageIO.read(new ByteArrayInputStream(imagen));
