@@ -131,8 +131,8 @@ public class AppControlador implements Observer {
         dtm = new DefaultTableModel(vResultados,0);
         for (Modelo model: gestorPersistencia.getModeloPersistencia().getModelos()) {
             try {
-                // Esto se puede optimizar ya que hace llamadas a la base de datos.
-                eficiencia = gestorPersistencia.getEficienciaPersistencia().getEficiencia(model.getEficiencia().getId());
+                // Cogemos la eficiencia del modelo
+                eficiencia = model.getEficiencia();
                 //aqui pasamos la foto
                 byte[] imagen = eficiencia.getImagen().getBytes(1, (int) eficiencia.getImagen().length());
                 BufferedImage img = ImageIO.read(new ByteArrayInputStream(imagen));
