@@ -37,36 +37,6 @@ public class EficienciaPersistencia extends Observable implements EficienciaDao 
         return eficiencia;
     }
 
-    @Override
-    public void crearEficiencia(Eficiencia eficiencia) {
-        Session sesion = HibernateUtil.getSessionFactory().openSession();
-        Transaction tx = sesion.beginTransaction();
-        sesion.save(eficiencia);
-        tx.commit();
-        sesion.close();
-        this.setEficiencias(getTodasEficiencias());
-    }
-
-    @Override
-    public void actualizarEficiencia(Eficiencia eficiencia) {
-        Session sesion = HibernateUtil.getSessionFactory().openSession();
-        Transaction tx = sesion.beginTransaction();
-        sesion.saveOrUpdate(eficiencia);
-        tx.commit();
-        sesion.close();
-        this.setEficiencias(getTodasEficiencias());
-    }
-
-    @Override
-    public void eliminarEficiencia(Eficiencia eficiencia) {
-        Session sesion = HibernateUtil.getSessionFactory().openSession();
-        Transaction tx = sesion.beginTransaction();
-        sesion.delete(eficiencia);
-        tx.commit();
-        sesion.close();
-        this.setEficiencias(getTodasEficiencias());
-    }
-
     public List<Eficiencia> getEficiencias() {
         return eficiencias;
     }
