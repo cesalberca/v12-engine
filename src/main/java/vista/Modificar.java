@@ -75,8 +75,32 @@ public class Modificar extends JDialog {
         return  this.cbNombre;
     }
 
+    public JComboBox getCbMarcas() {
+        return cbMarcas;
+    }
+
+    public JComboBox getCbEficiencias() {
+        return cbEficiencias;
+    }
+
+    public JComboBox getCbNombre() {
+        return cbNombre;
+    }
+
     public void mostrarModificadoCorrectamente() {
         System.out.println("Modificado correctamente");
+    }
+
+    public JTextField getTfNombre() {
+        return tfNombre;
+    }
+
+    public JTextField getTfEmisiones() {
+        return tfEmisiones;
+    }
+
+    public JTextField getTfConsumo() {
+        return tfConsumo;
     }
 
     public void onMarcaSeleccionado(){

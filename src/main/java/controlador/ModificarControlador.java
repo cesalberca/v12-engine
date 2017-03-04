@@ -74,8 +74,28 @@ public class ModificarControlador {
         modificar.addModeloMarcas(vMarcas);
     }
 
+    private void actualizarEntrada() {
+        switch (elementoSeleccionado) {
+            case "marca":
+                Marca marcaSeleccionada = marcas.get(modificar.getcbNombre().getSelectedIndex());
+                marcaSeleccionada.setNombre(modificar.getTfNombre().getText());
+                gestorPersistencia.getMarcaPersistencia().actualizarMarca(marcaSeleccionada);
+                break;
+            case "modelo":
+                Modelo modeloSeleccionado = modelos.get(modificar.getcbNombre().getSelectedIndex());
+                modeloSeleccionado.setNombre(modificar.getTfNombre().getText());
+                modeloSeleccionado.setConsumo(Double.parseDouble(modificar.getTfConsumo().getText()));
+                modeloSeleccionado.setEmisiones(Double.parseDouble(modificar.getTfEmisiones().getText()));
+                gestorPersistencia.getModeloPersistencia().actualizarModelo(modeloSeleccionado);
+                break;
+        }
+    }
+
     private void iniciarListeners() {
-        modificarElementoListener = actionEvent -> modificar.cerrarDialogo();
+        modificarElementoListener = actionEvent -> {
+            actualizarEntrada();
+            modificar.cerrarDialogo();
+        };
         modificar.getButtonOK().addActionListener(modificarElementoListener);
 
         cerrarListener = actionEvent -> modificar.cerrarDialogo();
@@ -84,17 +104,17 @@ public class ModificarControlador {
         marcaSeleccionadaListener = actionEvent -> {
             elementoSeleccionado = "marca";
             modificar.onMarcaSeleccionado();
-            this.cargarMarcas();
-            this.cargarElementosSeleccionados();
+            cargarMarcas();
+            cargarElementosSeleccionados();
         };
         modificar.getRbtnMarca().addActionListener(marcaSeleccionadaListener);
 
         modeloSeleccionadoListener = actionEvent -> {
             elementoSeleccionado = "modelo";
             modificar.onModeloSeleccionado();
-            this.cargarEficiencias();
-            this.cargarMarcas();
-            this.cargarElementosSeleccionados();
+            cargarEficiencias();
+            cargarMarcas();
+            cargarElementosSeleccionados();
         };
         modificar.getRbtnModelo().addActionListener(modeloSeleccionadoListener);
     }
