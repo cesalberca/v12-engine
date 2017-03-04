@@ -25,7 +25,7 @@ public class EliminarControlador {
     }
 
     private void cargarModelos(){
-        modelo = gestorPersistencia.getModeloPersistencia().getTodosModelos();
+        modelo = gestorPersistencia.getModeloPersistencia().getModelos();
         Vector vModelo = new Vector();
 
         for (Modelo modelos: modelo) {
@@ -36,7 +36,7 @@ public class EliminarControlador {
     }
 
     private void cargarMarcas(){
-        marca = gestorPersistencia.getMarcaPersistencia().getTodasMarcas();
+        marca = gestorPersistencia.getMarcaPersistencia().getMarcas();
         Vector vMarcas = new Vector();
 
         for (Marca marcas: marca) {
@@ -47,8 +47,6 @@ public class EliminarControlador {
     }
 
     private void iniciarListeners() {
-
-
         eliminarElementoListener = actionEvent ->{
             this.eliminarEntrada();
             eliminar.cerrarDialogo();
