@@ -53,8 +53,23 @@ public class BuscarControlador {
         for (Modelo model: almodelos) {
             for (int i = 0;i < buscar.getCbbMarca().getItemCount(); i++){
                 if(model.getMarca().getNombre() != buscar.getCbbMarca().getItemAt(i)){
-                   /* buscar.getCbbMarca().addItem();*/
+                   buscar.getCbbMarca().addItem(model.getMarca().getNombre());
                 }
+            }
+            for (int i = 0;i < buscar.getCbbClasificacion().getItemCount(); i++){
+                if(model.getEficiencia().getNombre() != buscar.getCbbClasificacion().getItemAt(i)){
+                    buscar.getCbbClasificacion().addItem(model.getEficiencia().getNombre());
+                }
+            }
+            for (int i = 0;i < buscar.getCbbEmisiones().getItemCount(); i++){
+                if(model.getEmisiones() != Double.parseDouble(buscar.getCbbEmisiones().getItemAt(i).toString())){
+                    buscar.getCbbEmisiones().addItem(model.getEmisiones());
+                }
+            }
+            if(model.getConsumo() > buscar.getsConsumo().getMaximum()){
+                buscar.getsConsumo().setMaximum((int)model.getConsumo());
+            }else if(model.getConsumo() < buscar.getsConsumo().getMinimum()){
+                buscar.getsConsumo().setMinimum((int) model.getConsumo());
             }
         }
     }
