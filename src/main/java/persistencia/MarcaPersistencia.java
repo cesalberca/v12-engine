@@ -1,6 +1,7 @@
 package persistencia;
 
 import modelo.entidades.Marca;
+import observador.Sujeto;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import utils.HibernateUtil;
@@ -8,7 +9,7 @@ import utils.HibernateUtil;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
-public class MarcaPersistencia implements MarcaDao {
+public class MarcaPersistencia implements MarcaDao, Sujeto {
     @Override
     public List<Marca> getTodasMarcas() {
         Session sesion = HibernateUtil.getSessionFactory().openSession();
@@ -37,6 +38,7 @@ public class MarcaPersistencia implements MarcaDao {
         sesion.save(marca);
         tx.commit();
         sesion.close();
+        notificarObservadores();
     }
 
     @Override
@@ -46,6 +48,7 @@ public class MarcaPersistencia implements MarcaDao {
         sesion.saveOrUpdate(marca);
         tx.commit();
         sesion.close();
+        notificarObservadores();
     }
 
     @Override
@@ -55,6 +58,7 @@ public class MarcaPersistencia implements MarcaDao {
         sesion.delete(marca);
         tx.commit();
         sesion.close();
+        notificarObservadores();
     }
 
     /*
