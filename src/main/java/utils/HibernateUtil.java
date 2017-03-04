@@ -12,6 +12,7 @@ public class HibernateUtil {
                 .configure()
                 .buildSessionFactory();
         } catch (Throwable ex) {
+            // TODO lanzar al usuario un diálogo que diga que no hay base de datos
             System.err.println("Error al iniciar el SessionFactory de hibernate." + ex);
             throw new ExceptionInInitializerError(ex);
         }
