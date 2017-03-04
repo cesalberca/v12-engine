@@ -1,11 +1,7 @@
 package persistencia;
 
 /**
- * Clase que gestiona toda la persitencia de la aplicación.
- * Tiene referencias actualizadas de los modelos, las eficiencias y las marcas.
- * Es una clase que es sujeto y observadora.
- * Esta clase observa las demás persistencias y éstas notifican los cambios a esta clase.
- * Además esta clase a su vez es sujeto, ya que el controlador mirará cambios sobre esta clase.
+ * Clase que crea las demás persistencias y contiene una referencia a cada una de ellas
  */
 public class GestorPersistencia {
     private EficienciaPersistencia eficienciaPersistencia;
