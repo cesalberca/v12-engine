@@ -113,10 +113,10 @@ public class CrearControlador {
         if (!Validador.validarCampo(crear.getTfNombre().getText())) {
             JOptionPane.showMessageDialog(null, "Introduce un nombre válido");
             return;
-        } else if (!Validador.validarCampo(crear.getTfConsumo().getText())) {
+        } else if (!Validador.validarCampoNumerico(crear.getTfConsumo().getText())) {
             JOptionPane.showMessageDialog(null, "Introduce un consumo válido");
             return;
-        } else if (!Validador.validarCampo(crear.getTfEmisiones().getText())) {
+        } else if (!Validador.validarCampoNumerico(crear.getTfEmisiones().getText())) {
             JOptionPane.showMessageDialog(null, "Introduce unas emisiones válidas");
             return;
         }
