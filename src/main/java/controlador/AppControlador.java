@@ -36,6 +36,7 @@ public class AppControlador implements Observer {
         this.app = app;
         this.gestorPersistencia = gestorPersistencia;
 
+        // App controlador sólo escucha a los cambios de modelos
         gestorPersistencia.getModeloPersistencia().addObserver(this);
 
         this.iniciarListeners();
@@ -71,7 +72,7 @@ public class AppControlador implements Observer {
 
         abrirBuscar = actionEvent -> {
             Buscar buscar = new Buscar();
-            new BuscarControlador(buscar, gestorPersistencia, new ArrayList<Modelo>());
+            new BuscarControlador(buscar, gestorPersistencia, new ArrayList<>());
             buscar.setTitle("Buscar elemento");
             buscar.pack();
             buscar.setLocationRelativeTo(null);
@@ -98,7 +99,7 @@ public class AppControlador implements Observer {
                 app.notificarErrorExportacion();
             } else {
                 try {
-                    Exportador.csv(gestorPersistencia.getModeloPersistencia().getTodosModelos(), ruta);
+                    Exportador.csv(gestorPersistencia.getModeloPersistencia().getModelos(), ruta);
                     app.notificarExportacionCompletada();
                 } catch (IOException e) {
                     app.notificarErrorExportacion();
@@ -130,6 +131,7 @@ public class AppControlador implements Observer {
         dtm = new DefaultTableModel(vResultados,0);
         for (Modelo model: gestorPersistencia.getModeloPersistencia().getModelos()) {
             try {
+                // Esto se puede optimizar ya que hace llamadas a la base de datos.
                 eficiencia = gestorPersistencia.getEficienciaPersistencia().getEficiencia(model.getEficiencia().getId());
                 //aqui pasamos la foto
                 byte[] imagen = eficiencia.getImagen().getBytes(1, (int) eficiencia.getImagen().length());
@@ -137,7 +139,16 @@ public class AppControlador implements Observer {
                 Object[] fila = new Object[1];
                 ImageIcon icono = new ImageIcon(img);
                 fila[0] = new JLabel(icono);
-                vDatos = new Vector<>(Arrays.asList(model.getMarca().getNombre(),model.getNombre(),model.getConsumo(),model.getEmisiones(),model.getEficiencia().getNombre(), fila[0]));
+
+                vDatos = new Vector<>(Arrays.asList(
+                    model.getMarca().getNombre(),
+                    model.getNombre(),
+                    model.getConsumo(),
+                    model.getEmisiones(),
+                    model.getEficiencia().getNombre(),
+                    fila[0])
+                );
+
                 dtm.addRow(vDatos);
             } catch (SQLException | IOException e) {
                 app.notificarErrorCargaDeDatos();
