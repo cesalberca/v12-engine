@@ -12,9 +12,6 @@ public class Eliminar extends JDialog {
     private JButton buttonCancel;
     private JRadioButton rbtnMarca;
     private JRadioButton rbtnModelo;
-    private JComboBox cbMarcas;
-    private JComboBox cbEficiencias;
-    private JTextField tfNombre;
     private JTextField tfEmisiones;
     private JTextField tfConsumo;
     private JTextField tfEficiencia;

@@ -74,10 +74,18 @@ public class EliminarControlador {
     private void eliminarEntrada(){
         switch(elementoSeleccionado){
             case "marca":
-                gestorPersistencia.getMarcaPersistencia().getMarca(eliminar.getCbNombre().getSelectedIndex());
+                gestorPersistencia.getMarcaPersistencia().getMarcas()
+                    .stream()
+                    .filter(s -> s.getNombre().equals(eliminar.getCbNombre().getSelectedItem().toString()))
+                    .findFirst()
+                    .ifPresent(i -> gestorPersistencia.getMarcaPersistencia().eliminarMarca(i));
                 break;
             case "modelo":
-               // gestorPersistencia.getModeloPersistencia().eliminarModelo();
+              gestorPersistencia.getModeloPersistencia().getModelos()
+                  .stream()
+                  .filter(s -> s.getNombre().equals(eliminar.getCbNombre().getSelectedItem().toString()))
+                  .findFirst()
+                  .ifPresent(i -> gestorPersistencia.getModeloPersistencia().eliminarModelo(i));
         }
     }
 }
