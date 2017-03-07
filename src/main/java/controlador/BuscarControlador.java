@@ -16,6 +16,11 @@ public class BuscarControlador {
     private List<Modelo> almodelos;
     private boolean nueva;
     private boolean coincideBusqueda;
+    private boolean coincideMarca;
+    private boolean coincideConsumo;
+    private boolean coincideEmisiones;
+    private boolean coincideClasificacion;
+
     public BuscarControlador(Buscar buscar, GestorPersistencia gestorPersistencia) {
         this.buscar = buscar;
         this.gestorPersistencia = gestorPersistencia;
@@ -56,25 +61,28 @@ public class BuscarControlador {
 
 
     private void buscar(){
-
         buscar.getTaResultados().setText("Modelos encontrados: ");
         gestorPersistencia.getModeloPersistencia().getModelos()
             .forEach(i -> {
                 coincideBusqueda = false;
+                coincideMarca = true;
+                coincideEmisiones = true;
+                coincideClasificacion = true;
+                coincideConsumo = true;
                 if(buscar.getCbMarca().isSelected()){
-                    coincideBusqueda = coincideMarca(i.getMarca().getNombre(), buscar.getCbbMarca().getSelectedItem().toString());
+                    coincideMarca = coincideMarca(i.getMarca().getNombre(), buscar.getCbbMarca().getSelectedItem().toString());
                 }
                 if(buscar.getCbConsumo().isSelected()){
-                    coincideBusqueda = coincideConsumo(i.getConsumo(), (double)buscar.getsConsumo().getValue());
+                    coincideConsumo = coincideConsumo(i.getConsumo(), (double)buscar.getsConsumo().getValue());
                 }
                 if(buscar.getCbEmisiones().isSelected()){
-                    coincideBusqueda = coincideEmisiones(i.getEmisiones(), Double.parseDouble(buscar.getCbbEmisiones().getSelectedItem().toString()));
+                    coincideEmisiones = coincideEmisiones(i.getEmisiones(), Double.parseDouble(buscar.getCbbEmisiones().getSelectedItem().toString()));
                 }
                 if(buscar.getCbClasificacion().isSelected()){
-                    coincideBusqueda = coincideClasificacion(i.getEficiencia().getNombre(),buscar.getCbbClasificacion().getSelectedItem().toString());
+                    coincideClasificacion = coincideClasificacion(i.getEficiencia().getNombre(),buscar.getCbbClasificacion().getSelectedItem().toString());
                 }
 
-                if(coincideBusqueda){
+                if(coincideMarca && coincideConsumo && coincideClasificacion && coincideEmisiones){
                     buscar.getTaResultados().append("\nMarca: " + i.getMarca().getNombre());
                     buscar.getTaResultados().append("\nModelo: " + i.getNombre());
                     buscar.getTaResultados().append("\nConsumo: " + i.getConsumo() + " litros/100km");
@@ -90,12 +98,12 @@ public class BuscarControlador {
     }
 
     private boolean coincideConsumo(Double consumoBuscar, Double consumoSeleccionado){
-        return consumoBuscar < consumoSeleccionado;
+        return consumoBuscar <= consumoSeleccionado;
 
     }
 
     private boolean coincideEmisiones(Double emisionesBuscar, Double emisionesSeleccionado){
-        return emisionesBuscar < emisionesSeleccionado;
+        return emisionesBuscar <= emisionesSeleccionado;
 
     }
 
