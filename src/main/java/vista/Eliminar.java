@@ -12,24 +12,12 @@ public class Eliminar extends JDialog {
     private JButton buttonCancel;
     private JRadioButton rbtnMarca;
     private JRadioButton rbtnModelo;
-    private JTextField tfEmisiones;
-    private JTextField tfConsumo;
-    private JTextField tfEficiencia;
-    private JTextField tfMarca;
     private JComboBox cbNombre;
 
     public Eliminar() {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
-
-        tfConsumo.setUI(new HintTextFieldUI("Consumo", true));
-        tfEmisiones.setUI(new HintTextFieldUI("Emisiones", true));
-        tfEmisiones.setEnabled(false);
-        tfConsumo.setEnabled(false);
-        tfMarca.setEnabled(false);
-        tfEficiencia.setEnabled(false);
-
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
     }

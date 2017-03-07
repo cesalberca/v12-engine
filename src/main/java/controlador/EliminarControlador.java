@@ -79,6 +79,7 @@ public class EliminarControlador {
                     .filter(s -> s.getNombre().equals(eliminar.getCbNombre().getSelectedItem().toString()))
                     .findFirst()
                     .ifPresent(i -> gestorPersistencia.getMarcaPersistencia().eliminarMarca(i));
+                cargarMarcas();
                 break;
             case "modelo":
               gestorPersistencia.getModeloPersistencia().getModelos()
@@ -86,6 +87,7 @@ public class EliminarControlador {
                   .filter(s -> s.getNombre().equals(eliminar.getCbNombre().getSelectedItem().toString()))
                   .findFirst()
                   .ifPresent(i -> gestorPersistencia.getModeloPersistencia().eliminarModelo(i));
+              cargarModelos();
         }
     }
 }
