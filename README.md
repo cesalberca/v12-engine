@@ -96,22 +96,3 @@ Aquí viven los POJOS y las demás clases que representen lógica del proyecto.
 ## Utils
 
 En este paquete existirá las utilidades generales. Por regla general son métodos estáticos.
-
-
-### Preguntas examen android
-
-* Estructura de un proyecto android
-* Manifiesto
-* Componentes: Servicio, activity, fragment, broadcast receiver
-* Ciclo de vida y activities
-* Eventos
-* Diferencias entre layouts
-* ActionBar (Proceso de creación)
-* __Adaptadores (Data esta base de datos y dado este listview cómo se carga)__
-* Toasts y dialogs
-* Intents
-* Broadcast receiver
-* Almacenamiento
-* AsyncTask, services e intent services (Preguntar cómo se hace un asynctask)
-* Dada una aplicación qué usarías
-* Cualquier cosas que hayas hecho en la práctica
